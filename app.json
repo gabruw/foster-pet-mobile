@@ -1,0 +1,10 @@
+{
+    "name": "Foster Pet Mobile",
+    "displayName": "Foster Pet",
+    "expo": {
+        "name": "Foster Pet",
+        "slug": "Foster Pet",
+        "version": "1.0.0",
+        "assetBundlePatterns": ["**/*"]
+    }
+}
