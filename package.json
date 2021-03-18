@@ -2,7 +2,7 @@
     "name": "foster-pet-mobile",
     "version": "0.0.1",
     "private": true,
-    "main": "./src/index.js",
+    "main": "index.js",
     "scripts": {
         "test": "jest",
         "lint": "eslint .",
