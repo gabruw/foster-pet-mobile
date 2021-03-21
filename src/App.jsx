@@ -1,15 +1,13 @@
 //#region Imports
 
-import AppRoutes from 'AppRoutes';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { View } from 'react-native';
+import AppRoutes from './AppRoutes';
 
 //#endregion
 
 const App = () => (
     <View>
-        <StatusBar style='dark' />
         <AppRoutes />
     </View>
 );
