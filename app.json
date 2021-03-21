@@ -1,10 +1,31 @@
 {
-    "name": "Foster Pet Mobile",
-    "displayName": "Foster Pet",
+    "expoDeploy": true,
+    "name": "FosterPet",
+    "displayName": "FosterPet",
     "expo": {
-        "name": "Foster Pet",
-        "slug": "Foster Pet",
+        "name": "FosterPet",
+        "slug": "FosterPet",
         "version": "1.0.0",
-        "assetBundlePatterns": ["**/*"]
+        "privacy": "public",
+        "sdkVersion": "41.0.0",
+        "orientation": "portrait",
+        "icon": "./src/assets/expo/icon.png",
+        "assetBundlePatterns": ["**/*"],
+        "platforms": ["ios", "android", "web"],
+        "splash": {
+            "image": "./src/assets/expo/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "packagerOpts": {
+            "config": "metro.config.js",
+            "sourceExts": ["js", "jsx"]
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "ios": {
+            "supportsTablet": true
+        }
     }
 }
