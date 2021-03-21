@@ -4,68 +4,75 @@
 
 # Xcode
 #
-*.ipa
-*.hmap
 build/
 *.pbxuser
+!default.pbxuser
 *.mode1v3
+!default.mode1v3
 *.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
 xcuserdata
-DerivedData
 *.xccheckout
 *.moved-aside
+DerivedData
+*.hmap
+*.ipa
 *.xcuserstate
-*.perspectivev3
-!default.pbxuser
-!default.mode1v3
-!default.mode2v3
-project.xcworkspace
-!default.perspectivev3
 
 # Android/IntelliJ
 #
-.idea
-*.iml
 build/
-*.hprof
+.idea
 .gradle
 local.properties
+*.iml
 
 # node.js
 #
-node_modules/
-npm-debug.log
+node_modules
+node_modules/**/*
+npm-debug.*
 yarn-error.log
 
+# Expo
+#
+.expo
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+web-report/
+
 # BUCK
-\.buckd/
+#
 buck-out/
+\.buckd/
 *.keystore
 !debug.keystore
 
-# os
-#
-ios
-.expo
-android
-
 # fastlane
 #
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
 */fastlane/report.xml
-*/fastlane/screenshots
 */fastlane/Preview.html
+*/fastlane/screenshots
 
-# Bundle artifacts
+# Bundle artifact
+#
 *.jsbundle
 
 # CocoaPods
+#
 /ios/Pods/
 
-# Expo
-.expo/*
-web-build/
+# IOS
+#
+ios
+
+# Android
+#
+android
