@@ -1,16 +1,16 @@
-const FONT = StyleSheet.create({
-    light: {
+const FONT = {
+    LIGHT: {
         fontFamily: 'Geomanist-Light'
     },
-    medium: {
+    MEDIUM: {
         fontFamily: 'Geomanist-Medium'
     },
-    bold: {
+    BOLD: {
         fontFamily: 'Geomanist-Bold'
     },
-    regular: {
+    REGULAR: {
         fontFamily: 'Geomanist'
     }
-});
+};
 
 export default FONT;

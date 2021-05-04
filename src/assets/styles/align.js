@@ -1,29 +1,29 @@
 const FLEX_CENTER = {
     display: 'flex',
-    alignitems: 'center'
+    alignItems: 'center'
 };
 
-const ALIGN = StyleSheet.create({
-    left: {
+const ALIGN = {
+    LEFT: {
         ...FLEX_CENTER,
-        justifycontent: 'flex-start'
+        justifyContent: 'flex-start'
     },
-    right: {
+    RIGHT: {
         ...FLEX_CENTER,
-        justifycontent: 'flex-end'
+        justifyContent: 'flex-end'
     },
-    center: {
+    CENTER: {
         ...FLEX_CENTER,
-        justifycontent: 'center'
+        justifyContent: 'center'
     },
-    between: {
+    BETWEEN: {
         display: 'flex',
-        justifycontent: 'space-between'
+        justifyContent: 'space-between'
     },
-    column: {
+    COLUMN: {
         display: 'flex',
-        flexdirection: 'column'
+        flexDirection: 'column'
     }
-});
+};
 
 export default ALIGN;

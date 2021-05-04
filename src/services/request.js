@@ -5,8 +5,8 @@ import ENDPOINT from './endpoint';
 
 //#endregion
 
-const API = axios.create({
+const api = axios.create({
     baseURL: ENDPOINT.BASE
 });
 
-export default API;
+export default api;

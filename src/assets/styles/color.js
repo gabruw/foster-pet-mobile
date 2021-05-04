@@ -1,17 +1,21 @@
 const COLOR = {
     BLUE: {
-        DARK: '#33539e',
-        LIGHT: '#7facd6',
-        MEDIUM: '#29648a',
-        DARKEST: '#28417d',
-        LIGHTEST: '#94c8f7'
+        DARK: '#488ef0',
+        LIGHT: '#76e3dd',
+        MEDIUM: '#2cdbd0',
+        DARKEST: '',
+        LIGHTEST: ''
     },
     PURPLE: {
-        DARK: '#a5678e',
-        LIGHT: '#bfb8da',
-        MEDIUM: '#e8b7d4',
-        DARKEST: '#804f6e',
-        LIGHTEST: '#d3cbf2'
+        DARK: '',
+        LIGHT: '#f07da8',
+        MEDIUM: '',
+        DARKEST: '',
+        LIGHTEST: ''
+    },
+    BACKGROUND: {
+        BLUE: '#6994ff',
+        PURPLE: '#a33fcd'
     },
     ERROR: {
         DEFAULT: '#9f3a38'
