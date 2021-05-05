@@ -9,6 +9,10 @@ const { LIGHT } = COLOR.PURPLE;
 
 const useStyles = () =>
     StyleSheet.create({
+        content: {
+            marginTop: 30,
+            marginBottom: 30
+        },
         container: {
             marginLeft: 30,
             marginRight: 30

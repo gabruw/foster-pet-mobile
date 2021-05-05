@@ -16,6 +16,12 @@ const ENDPOINT = {
     },
     ADDRESS: {
         CEP: (cep) => `https://viacep.com.br/ws/${cep}/json/`
+    },
+    CITY: {
+        OPTIONS: (cityId) => `city/options?${buildQueryParams({ cityId })}`
+    },
+    STATE: {
+        OPTIONS: (countryId) => `state/options?${buildQueryParams({ countryId })}`
     }
 };
 

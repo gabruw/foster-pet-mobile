@@ -23,21 +23,6 @@ const useStyles = () =>
             color: '#FFFFFF',
             textTransform: 'uppercase'
         },
-        midContent: {
-            marginLeft: 30,
-            marginRight: 30
-        },
-        text: {
-            fontSize: 20,
-            width: '100%',
-            marginBottom: 5,
-            color: '#FFFFFF',
-            ...ALIGN.LEFT
-        },
-        divider: {
-            height: 3,
-            backgroundColor: '#FFFFFF'
-        },
         bottomContent: {
             marginTop: 2
         },
@@ -49,6 +34,7 @@ const useStyles = () =>
             ...ALIGN.CENTER
         },
         register: {
+            marginLeft: 5,
             color: '#FFFFFF',
             fontWeight: '600',
             textDecorationLine: 'underline'

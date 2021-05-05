@@ -13,6 +13,7 @@ import FieldsCompany from 'views/authentication/fields/FieldsCompany';
 import { date } from 'yup/lib/locale';
 import FieldsAuthentication from '../../fields/FieldsAuthentication';
 import useStyles from './styles';
+import SubTitleDivider from 'components/SubTitleDivider';
 
 //#endregion
 
@@ -32,8 +33,6 @@ const FormCompany = () => {
         defaultValues: address ? address : {},
         resolver: yupResolver(authenticationSchema)
     });
-    console.log('address 1', address);
-    console.log('control', control);
 
     const onSubmit = useCallback(
         (data) => {
@@ -44,21 +43,34 @@ const FormCompany = () => {
     );
 
     return (
-        <View style={styles.container}>
-            <FieldsAuthentication control={control} errors={errors} />
-            <FieldsCompany control={control} errors={errors} />
-            <FieldsAddress control={control} errors={errors} getValues={getValues} />
+        <View style={styles.content}>
+            <SubTitleDivider text='Autenticação' />
+            <View style={styles.container}>
+                <FieldsAuthentication control={control} errors={errors} />
+            </View>
 
-            <Button
-                mode='contained'
-                loading={isLoading}
-                disabled={isLoading}
-                style={styles.submit}
-                contentStyle={styles.submit}
-                onPress={handleSubmit(onSubmit)}
-            >
-                Confirmar
-            </Button>
+            <SubTitleDivider text='Empresa' />
+            <View style={styles.container}>
+                <FieldsCompany control={control} errors={errors} />
+            </View>
+
+            <SubTitleDivider text='Endereço' />
+            <View style={styles.container}>
+                <FieldsAddress control={control} errors={errors} getValues={getValues} />
+            </View>
+
+            <View style={styles.container}>
+                <Button
+                    mode='contained'
+                    loading={isLoading}
+                    disabled={isLoading}
+                    style={styles.submit}
+                    contentStyle={styles.submit}
+                    onPress={handleSubmit(onSubmit)}
+                >
+                    Confirmar
+                </Button>
+            </View>
         </View>
     );
 };

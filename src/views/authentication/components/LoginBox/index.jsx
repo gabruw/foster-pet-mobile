@@ -1,17 +1,18 @@
 //#region Imports
 
 import Logo from 'assets/images/logo.png';
+import SubTitleDivider from 'components/SubTitleDivider';
 import SnackbarError from 'containers/SnackbarError';
 import React from 'react';
 import { Image, View } from 'react-native';
-import { Divider, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import useAuthenticationContext from 'storages/authentication/context';
 import FormLogin from '../../forms/FormLogin';
 import useStyles from './styles';
 
 //#endregion
 
-const LoginBox = () => {
+const LoginBox = ({ changeForm }) => {
     const styles = useStyles();
     const { error } = useAuthenticationContext();
 
@@ -22,16 +23,16 @@ const LoginBox = () => {
                 <Text style={styles.title}>Foster Pet</Text>
             </View>
 
-            <View style={styles.midContent}>
-                <Text style={styles.text}>Login</Text>
-                <Divider style={styles.divider} />
-            </View>
+            <SubTitleDivider text='Login' />
 
             <View style={styles.bottomContent}>
                 <FormLogin />
 
                 <Text style={styles.withoutAccount}>
-                    Não possuí uma conta? <Text style={styles.register}>Cadastre-se!</Text>
+                    Não possuí uma conta?
+                    <Text style={styles.register} onPress={() => changeForm(false)}>
+                        Cadastre-se!
+                    </Text>
                 </Text>
             </View>
 

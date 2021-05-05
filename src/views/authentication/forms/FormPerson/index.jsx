@@ -1,12 +1,14 @@
 //#region Imports
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import SubTitleDivider from 'components/SubTitleDivider';
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
 import usePersonContext from 'storages/person/context';
 import authenticationSchema from 'utils/validation/schemas/authentication';
+import FieldsAddress from 'views/authentication/fields/FieldsAddress';
 import FieldsPerson from 'views/authentication/fields/FieldsPerson';
 import { date } from 'yup/lib/locale';
 import FieldsAuthentication from './../../fields/FieldsAuthentication';
@@ -21,6 +23,7 @@ const FormPerson = () => {
     const {
         control,
         setValue,
+        getValues,
         handleSubmit,
         formState: { errors }
     } = useForm({
@@ -34,20 +37,34 @@ const FormPerson = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <FieldsAuthentication control={control} errors={errors} />
-            <FieldsPerson control={control} errors={errors} setValue={setValue} />
+        <View style={styles.content}>
+            <SubTitleDivider text='Autenticação' />
+            <View style={styles.container}>
+                <FieldsAuthentication control={control} errors={errors} />
+            </View>
 
-            <Button
-                mode='contained'
-                loading={isLoading}
-                disabled={isLoading}
-                style={styles.submit}
-                contentStyle={styles.submit}
-                onPress={handleSubmit(onSubmit)}
-            >
-                Confirmar
-            </Button>
+            <SubTitleDivider text='Pessoa' />
+            <View style={styles.container}>
+                <FieldsPerson control={control} errors={errors} setValue={setValue} />
+            </View>
+
+            <SubTitleDivider text='Endereço' />
+            <View style={styles.container}>
+                <FieldsAddress control={control} errors={errors} getValues={getValues} />
+            </View>
+
+            <View style={styles.container}>
+                <Button
+                    mode='contained'
+                    loading={isLoading}
+                    disabled={isLoading}
+                    style={styles.submit}
+                    contentStyle={styles.submit}
+                    onPress={handleSubmit(onSubmit)}
+                >
+                    Confirmar
+                </Button>
+            </View>
         </View>
     );
 };

@@ -12,7 +12,16 @@ import useStyles from './styles';
 
 const { PURPLE } = COLOR.BACKGROUND;
 
-const StyledPicker = ({ name, label, control, outlineColor, defaultValue = '', iconColor = PURPLE }) => {
+const StyledPicker = ({
+    name,
+    label,
+    control,
+    iconName,
+    items = [],
+    outlineColor,
+    defaultValue = '',
+    iconColor = PURPLE
+}) => {
     const styles = useStyles(outlineColor);
 
     const { field } = useController({
@@ -24,7 +33,7 @@ const StyledPicker = ({ name, label, control, outlineColor, defaultValue = '', i
     return (
         <View style={styles.view}>
             <View styles={styles.iconView}>
-                <TextInput.Icon name='city' color={iconColor} style={styles.icon} />
+                <TextInput.Icon name={iconName} color={iconColor} style={styles.icon} />
             </View>
 
             <View style={styles.pickerView}>
@@ -35,7 +44,9 @@ const StyledPicker = ({ name, label, control, outlineColor, defaultValue = '', i
                     onValueChange={(itemValue) => field.onChange(itemValue)}
                 >
                     <Picker.Item label={label} value='' />
-                    <Picker.Item label='City' value='courses' />
+                    {items.map((item) => (
+                        <Picker.Item label={item.text} value={item.value} />
+                    ))}
                 </Picker>
             </View>
         </View>
