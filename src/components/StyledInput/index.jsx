@@ -8,13 +8,13 @@ import useStyles from './styles';
 
 //#endregion
 
-const StyledInput = ({ name, control, errors, outlineColor = '#000', ...rest }) => {
+const StyledInput = ({ name, control, errors, outlineColor = '#000000', defaultValue = '', ...rest }) => {
     const styles = useStyles();
 
     const { field } = useController({
         name,
         control,
-        defaultValue: ''
+        defaultValue
     });
 
     const error = useMemo(() => errors && errors[name] && errors[name].message, [errors]);
@@ -27,7 +27,11 @@ const StyledInput = ({ name, control, errors, outlineColor = '#000', ...rest }) 
                 mode='outlined'
                 value={field.value}
                 onChangeText={field.onChange}
-                theme={{ colors: { primary: outlineColor } }}
+                theme={{
+                    colors: {
+                        primary: outlineColor
+                    }
+                }}
             />
             <Text style={styles.text}>{error}</Text>
         </View>

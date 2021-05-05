@@ -7,6 +7,15 @@ const ENDPOINT = {
         UNLOCK: (id) => `security/unlock?${buildQueryParams({ id })}`,
         ENABLE: (id) => `security/enable?${buildQueryParams({ id })}`,
         UNABLE: (id) => `security/unable?${buildQueryParams({ id })}`
+    },
+    PERSON: {
+        THIS: 'person'
+    },
+    COMPANY: {
+        THIS: 'company'
+    },
+    ADDRESS: {
+        CEP: (cep) => `https://viacep.com.br/ws/${cep}/json/`
     }
 };
 

@@ -1,10 +1,11 @@
 //#region Imports
 
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
+import AUTHENTICATION_FIELD from 'utils/constants/field/authentication';
 import useRequestState from 'utils/hooks/useRequestState';
 import { postLogin } from './services/send-data';
-import AUTHENTICATION_FIELD from 'utils/constants/field/authentication';
-import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
+import isInvalid from 'utils/constants/function/isInvalid';
 
 //#endregion
 
@@ -16,40 +17,41 @@ const initialState = {
 };
 
 export const AuthenticationContextProvider = ({ children, defaultValues }) => {
-    const { run } = useRequestState();
+    const { run, requestState } = useRequestState();
     const [state, setState] = useState({ ...initialState, ...defaultValues });
 
+    useEffect(() => {
+        setIsLoading(requestState.isLoading);
+    }, [requestState]);
+
     const setIsLoading = useCallback(
-        () =>
+        (isLoading = false) =>
             setState((prevState) => ({
                 ...prevState,
-                isLoading: !prevState.isLoading
+                isLoading: isInvalid(isLoading) ? !prevState.isLoading : isLoading
             })),
         [setState]
     );
 
-    const login = useCallback(
+    const fetchLogin = useCallback(
         async (form) => {
-            setIsLoading();
-
-            await run(() => postLogin(form))
-                .then(({ data }) => console.log(data))
-                .finally(() => setIsLoading());
+            const data = await run(() => postLogin(form));
+            setState((prevState) => ({ ...prevState, [AUTHENTICATION_FIELD.THIS]: data.data, error: data.errors }));
         },
-        [setIsLoading, run, setState]
+        [run, setState, requestState]
     );
 
     return (
-        <AuthenticationContext.Provider value={{ state, setIsLoading, login }}>
+        <AuthenticationContext.Provider value={{ state, setIsLoading, fetchLogin }}>
             {children}
         </AuthenticationContext.Provider>
     );
 };
 
 const useAuthenticationContext = () => {
-    const { state, setIsLoading, login } = useContext(AuthenticationContext);
+    const { state, setIsLoading, fetchLogin } = useContext(AuthenticationContext);
 
-    return { setIsLoading, login, ...state };
+    return { setIsLoading, fetchLogin, ...state };
 };
 
 export default useAuthenticationContext;

@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ROUTE_NAME from 'routes/route-name';
-import UNKNOW_ERROR from 'utils/constants/error/unknow';
+import MISC_ERROR from 'utils/constants/error/misc';
 import sleep from 'utils/constants/function/sleep';
 
 //#endregion
@@ -33,16 +33,18 @@ const useRequestState = () => {
             try {
                 const { data } = await callback();
 
+                const values = data.data ? data.data : data;
+                const errors = data.errors ? data.errors : initalState.errors;
+
                 responseObj = {
                     ...initalState,
                     success: true,
-                    data: data.data,
-                    token: data.token,
-                    errors: data.errors
+                    data: values,
+                    errors: errors
                 };
             } catch (error) {
-                const hadError = error && error.response;
-                if (hadError && error.response.status === 401) {
+                const responseError = error && error.response;
+                if (responseError && responseError.status === 401) {
                     history.push([ROUTE_NAME.AUTHENTICATION]);
                 }
 
@@ -52,7 +54,7 @@ const useRequestState = () => {
 
                 responseObj = {
                     ...initalState,
-                    errors: hadError && error.response.data ? error.response.data.errors : [UNKNOW_ERROR]
+                    errors: responseError && responseError.data ? responseError.data.errors : MISC_ERROR.UNKNOW
                 };
             }
 

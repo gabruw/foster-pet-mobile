@@ -1,6 +1,6 @@
 //#region Imports
 
-import React, { useCallback, useState } from 'react';
+import React, { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 import { View } from 'react-native';
 import { Button, RadioButton } from 'react-native-paper';
 import clsx from 'utils/constants/function/clsx';
@@ -11,6 +11,10 @@ import useStyles from './styles';
 const ButtonGroup = ({ style, values = [], backgroundColor, backgroundColorActived, ...rest }, ref) => {
     const styles = useStyles(backgroundColor, backgroundColorActived);
     const [active, setActive] = useState(values.length > 0 && values[0].value);
+
+    useImperativeHandle(ref, () => ({
+        value: active
+    }));
 
     const buttonStyles = useCallback(
         (value, index) =>
@@ -53,4 +57,4 @@ const ButtonGroup = ({ style, values = [], backgroundColor, backgroundColorActiv
     );
 };
 
-export default ButtonGroup;
+export default forwardRef(ButtonGroup);

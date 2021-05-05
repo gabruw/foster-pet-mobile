@@ -1,7 +1,4 @@
 module.exports = {
-    resolver: {
-        sourceExts: ['jsx', 'js']
-    },
     transformer: {
         getTransformOptions: async () => ({
             transform: {
@@ -10,5 +7,8 @@ module.exports = {
             }
         }),
         assetPlugins: ['expo-asset/tools/hashAssetFiles']
+    },
+    resolver: {
+        sourceExts: ['jsx', 'js', 'ts', 'tsx']
     }
 };

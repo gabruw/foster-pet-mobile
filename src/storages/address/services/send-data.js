@@ -5,4 +5,4 @@ import ENDPOINT from 'services/endpoint';
 
 //#endregion
 
-export const postLogin = (data) => api.post(ENDPOINT.SECURITY.LOGIN, data);
+export const getCep = (cep) => api.get(ENDPOINT.ADDRESS.CEP(cep));

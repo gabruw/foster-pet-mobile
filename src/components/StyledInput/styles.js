@@ -13,7 +13,6 @@ const useStyles = () =>
             width: '100%',
             fontWeight: 'bold',
             color: COLOR.ERROR.DEFAULT,
-            textShadow: '-1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF',
             ...ALIGN.RIGHT
         }
     });
