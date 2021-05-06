@@ -19,7 +19,7 @@ const useStyles = () =>
         },
         submit: {
             height: 40,
-            backgroundColor: LIGHT
+            backgroundColor: '#de2fcf'
         }
     });
 

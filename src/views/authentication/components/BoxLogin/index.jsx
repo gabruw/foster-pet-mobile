@@ -12,7 +12,7 @@ import useStyles from './styles';
 
 //#endregion
 
-const LoginBox = ({ changeForm }) => {
+const BoxLogin = ({ changeForm }) => {
     const styles = useStyles();
     const { error } = useAuthenticationContext();
 
@@ -28,12 +28,14 @@ const LoginBox = ({ changeForm }) => {
             <View style={styles.bottomContent}>
                 <FormLogin />
 
-                <Text style={styles.withoutAccount}>
-                    Não possuí uma conta?
-                    <Text style={styles.register} onPress={() => changeForm(false)}>
-                        Cadastre-se!
+                <View style={styles.content}>
+                    <Text style={styles.withoutAccount}>
+                        Não possuí uma conta?
+                        <Text style={styles.register} onPress={() => changeForm(false)}>
+                            Cadastre-se!
+                        </Text>
                     </Text>
-                </Text>
+                </View>
             </View>
 
             <SnackbarError errors={error} />
@@ -41,4 +43,4 @@ const LoginBox = ({ changeForm }) => {
     );
 };
 
-export default LoginBox;
+export default BoxLogin;

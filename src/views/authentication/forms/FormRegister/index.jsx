@@ -9,14 +9,15 @@ import { Button } from 'react-native-paper';
 import usePersonContext from 'storages/person/context';
 import authenticationSchema from 'utils/validation/schemas/authentication';
 import FieldsAddress from 'views/authentication/fields/FieldsAddress';
+import FieldsCompany from 'views/authentication/fields/FieldsCompany';
 import FieldsPerson from 'views/authentication/fields/FieldsPerson';
 import { date } from 'yup/lib/locale';
-import FieldsAuthentication from './../../fields/FieldsAuthentication';
+import FieldsAuthentication from '../../fields/FieldsAuthentication';
 import useStyles from './styles';
 
 //#endregion
 
-const FormPerson = () => {
+const FormRegister = () => {
     const styles = useStyles();
     const { isLoading } = usePersonContext();
 
@@ -41,6 +42,11 @@ const FormPerson = () => {
             <SubTitleDivider text='Autenticação' />
             <View style={styles.container}>
                 <FieldsAuthentication control={control} errors={errors} />
+            </View>
+
+            <SubTitleDivider text='Empresa' />
+            <View style={styles.container}>
+                <FieldsCompany control={control} errors={errors} />
             </View>
 
             <SubTitleDivider text='Pessoa' />
@@ -69,4 +75,4 @@ const FormPerson = () => {
     );
 };
 
-export default FormPerson;
+export default FormRegister;
