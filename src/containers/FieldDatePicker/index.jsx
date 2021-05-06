@@ -2,7 +2,7 @@
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import COLOR from 'assets/styles/color';
-import StyledInput from 'components/StyledInput';
+import FieldInput from 'components/FieldInput';
 import moment from 'moment';
 import React, { Fragment, useState } from 'react';
 import { TextInput } from 'react-native-paper';
@@ -11,13 +11,13 @@ import { TextInput } from 'react-native-paper';
 
 const { PURPLE } = COLOR.BACKGROUND;
 
-const StyledDatePicker = ({ control, errors, setValue, name, label, format = 'DD-MM-YYYY', display = 'default' }) => {
+const FieldDatePicker = ({ control, errors, setValue, name, label, format = 'DD-MM-YYYY', display = 'default' }) => {
     const [date, setDate] = useState(new Date());
     const [visible, setVisible] = useState(false);
 
     return (
         <Fragment>
-            <StyledInput
+            <FieldInput
                 name={name}
                 label={label}
                 errors={errors}
@@ -48,4 +48,4 @@ const StyledDatePicker = ({ control, errors, setValue, name, label, format = 'DD
     );
 };
 
-export default StyledDatePicker;
+export default FieldDatePicker;

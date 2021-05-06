@@ -1,6 +1,6 @@
 //#region Imports
 
-import StyledPicker from 'containers/StyledPicker';
+import FieldPicker from 'containers/FieldPicker';
 import React, { useEffect } from 'react';
 import useStateContext from 'storages/state/context';
 import STATE_FIELD from 'utils/constants/field/state';
@@ -16,7 +16,7 @@ const StateField = ({ control, errors }) => {
     // }, []);
 
     return (
-        <StyledPicker
+        <FieldPicker
             errors={errors}
             control={control}
             iconName='home-account'

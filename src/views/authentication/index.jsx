@@ -2,26 +2,31 @@
 
 import GradientBackground from 'components/GradientBackground';
 import React, { useState } from 'react';
+import { View } from 'react-native';
 import { AddressContextProvider } from 'storages/address/context';
 import { CompanyContextProvider } from 'storages/company/context';
 import { PersonContextProvider } from 'storages/person/context';
 import BoxLogin from './components/BoxLogin';
 import BoxRegister from './components/BoxRegister';
+import useStyles from './styles';
 
 //#endregion
 
 const Authentication = () => {
-    const [register, setRegister] = useState(true);
+    const styles = useStyles();
+    const [isFormLogin, setIsFormLogin] = useState(true);
 
     return (
         <GradientBackground>
-            <AddressContextProvider>
-                <PersonContextProvider>
-                    <CompanyContextProvider>
-                        {register ? <BoxLogin changeForm={setRegister} /> : <BoxRegister />}
-                    </CompanyContextProvider>
-                </PersonContextProvider>
-            </AddressContextProvider>
+            <View style={styles.container}>
+                <AddressContextProvider>
+                    <PersonContextProvider>
+                        <CompanyContextProvider>
+                            {isFormLogin ? <BoxLogin changeForm={setIsFormLogin} /> : <BoxRegister />}
+                        </CompanyContextProvider>
+                    </PersonContextProvider>
+                </AddressContextProvider>
+            </View>
         </GradientBackground>
     );
 };

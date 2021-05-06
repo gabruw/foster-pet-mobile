@@ -10,7 +10,7 @@ const COLOR = {
         DARK: '',
         LIGHT: '#f07da8',
         MEDIUM: '',
-        DARKEST: '',
+        DARKEST: '#de2fcf',
         LIGHTEST: ''
     },
     BACKGROUND: {

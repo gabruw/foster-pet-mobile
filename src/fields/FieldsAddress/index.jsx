@@ -1,7 +1,7 @@
 //#region Imports
 
 import COLOR from 'assets/styles/color';
-import StyledInput from 'components/StyledInput';
+import FieldInput from 'components/FieldInput';
 import React from 'react';
 import { TextInput } from 'react-native-paper';
 import useAddressContext from 'storages/address/context';
@@ -22,14 +22,14 @@ const FieldsAddress = ({ control, errors, getValues }) => {
     return (
         <StateContextProvider>
             <CityContextProvider>
-                <StyledInput
+                <FieldInput
                     errors={errors}
                     control={control}
                     name={ADDRESS_FIELD.NAME}
                     label={ADDRESS_LABEL.NAME}
                     left={<TextInput.Icon name='map-marker' color={PURPLE} />}
                 />
-                <StyledInput
+                <FieldInput
                     errors={errors}
                     control={control}
                     name={ADDRESS_FIELD.CEP}
@@ -37,28 +37,28 @@ const FieldsAddress = ({ control, errors, getValues }) => {
                     onBlur={() => fetchCep(getValues(ADDRESS_FIELD.CEP))}
                     left={<TextInput.Icon name='sign-direction' color={PURPLE} />}
                 />
-                <StyledInput
+                <FieldInput
                     errors={errors}
                     control={control}
                     name={ADDRESS_FIELD.ROAD}
                     label={ADDRESS_LABEL.ROAD}
                     left={<TextInput.Icon name='road' color={PURPLE} />}
                 />
-                <StyledInput
+                <FieldInput
                     errors={errors}
                     control={control}
                     name={ADDRESS_FIELD.NEIGHBORHOOD}
                     label={ADDRESS_LABEL.NEIGHBORHOOD}
                     left={<TextInput.Icon name='home-group' color={PURPLE} />}
                 />
-                <StyledInput
+                <FieldInput
                     errors={errors}
                     control={control}
                     name={ADDRESS_FIELD.NUMBER}
                     label={ADDRESS_LABEL.NUMBER}
                     left={<TextInput.Icon name='numeric' color={PURPLE} />}
                 />
-                <StyledInput
+                <FieldInput
                     multiline
                     errors={errors}
                     numberOfLines={3}

@@ -12,7 +12,7 @@ import useStyles from './styles';
 
 const { PURPLE } = COLOR.BACKGROUND;
 
-const StyledPicker = ({
+const FieldPicker = ({
     name,
     label,
     control,
@@ -53,4 +53,4 @@ const StyledPicker = ({
     );
 };
 
-export default StyledPicker;
+export default FieldPicker;

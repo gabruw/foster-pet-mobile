@@ -7,10 +7,7 @@ import { StyleSheet } from 'react-native';
 
 const useStyles = (color = '#FFFFFF') =>
     StyleSheet.create({
-        content: {
-            marginLeft: 30,
-            marginRight: 30
-        },
+        content: {},
         text: {
             fontSize: 20,
             width: '100%',

@@ -8,7 +8,7 @@ import useStyles from './styles';
 
 //#endregion
 
-const StyledInput = ({ name, control, errors, outlineColor = '#000000', defaultValue = '', ...rest }) => {
+const FieldInput = ({ name, control, errors, outlineColor = '#000000', defaultValue = '', ...rest }) => {
     const styles = useStyles();
 
     const { field } = useController({
@@ -38,4 +38,4 @@ const StyledInput = ({ name, control, errors, outlineColor = '#000000', defaultV
     );
 };
 
-export default StyledInput;
+export default FieldInput;

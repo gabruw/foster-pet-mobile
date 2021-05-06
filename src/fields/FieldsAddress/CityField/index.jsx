@@ -1,6 +1,6 @@
 //#region Imports
 
-import StyledPicker from 'containers/StyledPicker';
+import FieldPicker from 'containers/FieldPicker';
 import React, { useEffect } from 'react';
 import useCityContext from 'storages/city/context';
 import CITY_FIELD from 'utils/constants/field/city';
@@ -18,13 +18,7 @@ const CityField = ({ control, errors, getValues }) => {
     // }, [fetchOptions]);
 
     return (
-        <StyledPicker
-            iconName='city'
-            errors={errors}
-            control={control}
-            name={CITY_FIELD.THIS}
-            label={CITY_LABEL.NAME}
-        />
+        <FieldPicker iconName='city' errors={errors} control={control} name={CITY_FIELD.THIS} label={CITY_LABEL.NAME} />
     );
 };
 
