@@ -3,7 +3,6 @@
 import GradientBackground from 'components/GradientBackground';
 import SnackbarError from 'containers/SnackbarError';
 import React, { useMemo, useState } from 'react';
-import { View } from 'react-native';
 import { AddressContextProvider } from 'storages/address/context';
 import useAuthenticationContext from 'storages/authentication/context';
 import useCompanyContext, { CompanyContextProvider } from 'storages/company/context';
@@ -11,13 +10,11 @@ import usePersonContext, { PersonContextProvider } from 'storages/person/context
 import handleArrayErrors from 'utils/function/handleArrayErrors';
 import BoxLogin from './components/BoxLogin';
 import BoxRegister from './components/BoxRegister';
-import useStyles from './styles';
 
 //#endregion
 
 const AuthenticationContent = () => {
-    const styles = useStyles();
-    const [isFormLogin, setIsFormLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(true);
 
     const { error: personErrors } = usePersonContext();
     const { error: companyErrors } = useCompanyContext();
@@ -31,10 +28,8 @@ const AuthenticationContent = () => {
 
     return (
         <GradientBackground>
-            <View style={styles.container}>
-                {isFormLogin ? <BoxLogin changeForm={setIsFormLogin} /> : <BoxRegister />}
-                <SnackbarError errors={errors} />
-            </View>
+            {isLogin ? <BoxLogin setIsLogin={setIsLogin} /> : <BoxRegister setIsLogin={setIsLogin} />}
+            <SnackbarError errors={errors} />
         </GradientBackground>
     );
 };

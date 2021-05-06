@@ -2,20 +2,23 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import ButtonContained from 'components/ButtonContained';
+import StateButtonGroup from 'components/ButtonGroup/StateButtonGroup';
 import SubTitleDivider from 'components/SubTitleDivider';
 import FieldsAddress from 'fields/FieldsAddress';
 import FieldsAuthentication from 'fields/FieldsAuthentication';
-import FieldsCompany from 'fields/FieldsCompany';
-import FieldsPerson from 'fields/FieldsPerson';
-import React, { Fragment, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ScrollView } from 'react-native-gesture-handler';
 import usePersonContext from 'storages/person/context';
+import { DEFAULT_VALUE, FORM_REGISTER_VALUES } from 'utils/constants/module/form-register';
 import authenticationSchema from 'utils/validation/schemas/authentication';
+import ModuleFormRegister from './ModuleFormRegister';
 
 //#endregion
 
 const FormRegister = () => {
     const { isLoading } = usePersonContext();
+    const [form, setForm] = useState(DEFAULT_VALUE);
 
     const {
         control,
@@ -33,15 +36,12 @@ const FormRegister = () => {
     }, []);
 
     return (
-        <Fragment>
+        <ScrollView>
             <SubTitleDivider text='Autenticação' />
             <FieldsAuthentication control={control} errors={errors} />
 
-            <SubTitleDivider text='Empresa' />
-            <FieldsCompany control={control} errors={errors} />
-
-            <SubTitleDivider text='Pessoa' />
-            <FieldsPerson control={control} errors={errors} setValue={setValue} />
+            <StateButtonGroup get={form} set={setForm} values={FORM_REGISTER_VALUES} />
+            <ModuleFormRegister form={form} control={control} errors={errors} setValue={setValue} />
 
             <SubTitleDivider text='Endereço' />
             <FieldsAddress control={control} errors={errors} getValues={getValues} />
@@ -49,7 +49,7 @@ const FormRegister = () => {
             <ButtonContained loading={isLoading} disabled={isLoading} onPress={handleSubmit(onSubmit)}>
                 Confirmar
             </ButtonContained>
-        </Fragment>
+        </ScrollView>
     );
 };
 
