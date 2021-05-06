@@ -6,9 +6,9 @@ import { StyleSheet } from 'react-native';
 
 const useStyles = () =>
     StyleSheet.create({
-        arrow: {
-            marginTop: 20,
-            marginLeft: 20
+        container: {
+            marginTop: 10,
+            marginBottom: 5
         }
     });
 

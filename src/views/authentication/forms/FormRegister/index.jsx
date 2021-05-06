@@ -8,15 +8,19 @@ import FieldsAddress from 'fields/FieldsAddress';
 import FieldsAuthentication from 'fields/FieldsAuthentication';
 import React, { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import usePersonContext from 'storages/person/context';
 import { DEFAULT_VALUE, FORM_REGISTER_VALUES } from 'utils/constants/module/form-register';
 import authenticationSchema from 'utils/validation/schemas/authentication';
 import ModuleFormRegister from './ModuleFormRegister';
+import useStyles from './styles';
 
 //#endregion
 
 const FormRegister = () => {
+    const styles = useStyles();
+
     const { isLoading } = usePersonContext();
     const [form, setForm] = useState(DEFAULT_VALUE);
 
@@ -40,8 +44,10 @@ const FormRegister = () => {
             <SubTitleDivider text='Autenticação' />
             <FieldsAuthentication control={control} errors={errors} />
 
-            <StateButtonGroup get={form} set={setForm} values={FORM_REGISTER_VALUES} />
-            <ModuleFormRegister form={form} control={control} errors={errors} setValue={setValue} />
+            <View style={styles.container}>
+                <StateButtonGroup get={form} set={setForm} values={FORM_REGISTER_VALUES} />
+                <ModuleFormRegister form={form} control={control} errors={errors} setValue={setValue} />
+            </View>
 
             <SubTitleDivider text='Endereço' />
             <FieldsAddress control={control} errors={errors} getValues={getValues} />
