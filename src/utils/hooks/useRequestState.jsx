@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ROUTE_NAME from 'routes/route-name';
 import MISC_ERROR from 'utils/constants/error/misc';
-import sleep from 'utils/constants/function/sleep';
+import sleep from 'utils/function/sleep';
 
 //#endregion
 

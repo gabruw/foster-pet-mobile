@@ -3,7 +3,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
 import PERSON_FIELD from 'utils/constants/field/person';
-import isInvalid from 'utils/constants/function/isInvalid';
+import isInvalid from 'utils/function/isInvalid';
 import useRequestState from 'utils/hooks/useRequestState';
 import { postRegister } from './services/send-data';
 

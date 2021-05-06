@@ -4,7 +4,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import useStyles from './styles';
-import clsx from 'utils/constants/function/clsx';
+import clsx from 'utils/function/clsx';
 
 //#endregion
 

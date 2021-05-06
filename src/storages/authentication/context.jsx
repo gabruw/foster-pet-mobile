@@ -5,7 +5,7 @@ import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
 import AUTHENTICATION_FIELD from 'utils/constants/field/authentication';
 import useRequestState from 'utils/hooks/useRequestState';
 import { postLogin } from './services/send-data';
-import isInvalid from 'utils/constants/function/isInvalid';
+import isInvalid from 'utils/function/isInvalid';
 
 //#endregion
 

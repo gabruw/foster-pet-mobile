@@ -2,11 +2,9 @@
 
 import Logo from 'assets/images/logo.png';
 import ButtonContained from 'components/ButtonContained';
-import SnackbarError from 'containers/SnackbarError';
 import React, { Fragment } from 'react';
 import { Image, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import useAuthenticationContext from 'storages/authentication/context';
 import FormLogin from '../../forms/FormLogin';
 import useStyles from './styles';
 
@@ -14,7 +12,6 @@ import useStyles from './styles';
 
 const BoxLogin = ({ changeForm }) => {
     const styles = useStyles();
-    const { error } = useAuthenticationContext();
 
     return (
         <Fragment>
@@ -30,8 +27,6 @@ const BoxLogin = ({ changeForm }) => {
                     Criar uma nova conta
                 </ButtonContained>
             </View>
-
-            <SnackbarError errors={error} />
         </Fragment>
     );
 };
