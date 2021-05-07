@@ -36,14 +36,8 @@ const FormAddress = () => {
             <SubTitleDivider text='Endereço' />
             <FieldsAddress control={control} errors={errors} getValues={getValues} />
 
-            <ButtonContained
-                marginTop={5}
-                icon='arrow-right'
-                loading={isLoading}
-                disabled={isLoading}
-                onPress={handleSubmit(onSubmit)}
-            >
-                Continuar
+            <ButtonContained marginTop={5} loading={isLoading} disabled={isLoading} onPress={handleSubmit(onSubmit)}>
+                Concluir
             </ButtonContained>
         </View>
     );

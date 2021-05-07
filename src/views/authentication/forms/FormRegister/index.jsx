@@ -29,8 +29,8 @@ const FormRegister = ({ setIsFormRegister }) => {
         handleSubmit,
         formState: { errors }
     } = useForm({
-        reValidateMode: 'onBlur',
-        resolver: yupResolver(schema)
+        reValidateMode: 'onBlur'
+        // resolver: yupResolver(schema)
     });
 
     useEffect(() => {
