@@ -1,24 +1,18 @@
 //#region Imports
 
-import Margin from 'components/Margin';
-import React, { Fragment } from 'react';
-import { IconButton } from 'react-native-paper';
-import FormRegister from '../../forms/FormRegister';
-import useStyles from './styles';
+import React, { useState } from 'react';
+import BoxFormAddress from './BoxFormAddress';
+import BoxFormRegister from './BoxFormRegister';
 
 //#endregion
 
 const BoxRegister = ({ setIsLogin }) => {
-    const styles = useStyles();
+    const [isFormRegister, setIsFormRegister] = useState(true);
 
-    return (
-        <Fragment>
-            <IconButton icon='arrow-left' color='#FFFFFF' style={styles.arrow} onPress={() => setIsLogin(true)} />
-
-            <Margin paddingTop={0}>
-                <FormRegister />
-            </Margin>
-        </Fragment>
+    return isFormRegister ? (
+        <BoxFormRegister setIsLogin={setIsLogin} setIsFormRegister={setIsFormRegister} />
+    ) : (
+        <BoxFormAddress setIsFormRegister={setIsFormRegister} />
     );
 };
 

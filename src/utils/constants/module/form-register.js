@@ -2,18 +2,29 @@
 
 import FieldsCompany from 'fields/FieldsCompany';
 import FieldsPerson from 'fields/FieldsPerson';
-import React from 'react';
+import authenticationSchema from 'utils/validation/schemas/authentication';
+import personSchema from 'utils/validation/schemas/company';
+import companySchema from 'utils/validation/schemas/person';
 
 //#endregion
 
-const FORM_REGISTER_MODULE = (control, errors, setValue) => ({
-    COMPANY: { text: 'Empresa', value: 'COMPANY', component: <FieldsCompany control={control} errors={errors} /> },
+const FORM_REGISTER_MODULE = {
+    COMPANY: {
+        text: 'Empresa',
+        value: 'COMPANY',
+        component: FieldsCompany
+    },
     PERSON: {
         text: 'Person',
         value: 'PERSON',
-        component: <FieldsPerson control={control} errors={errors} setValue={setValue} />
+        component: FieldsPerson
     }
-});
+};
+
+export const SCHEMA = {
+    PERSON: personSchema.concat(authenticationSchema),
+    COMPANY: companySchema.concat(authenticationSchema)
+};
 
 export const FORM_REGISTER_VALUES = [
     { text: 'Person', value: 'PERSON' },
