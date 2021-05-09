@@ -1,21 +1,51 @@
 const COLOR = {
     BLUE: {
-        DARK: '#488ef0',
-        LIGHT: '#76e3dd',
-        MEDIUM: '#2cdbd0',
-        DARKEST: '',
-        LIGHTEST: ''
+        PRIMARY: {
+            DARK: '',
+            LIGHT: '#76e3dd',
+            MEDIUM: '#6994ff',
+            DARKEST: '',
+            LIGHTEST: ''
+        },
+        SHADOW: {
+            DARK: '',
+            LIGHT: '#2cdbd0',
+            MEDIUM: '#488ef0',
+            DARKEST: '',
+            LIGHTEST: ''
+        }
     },
     PURPLE: {
-        DARK: '',
-        LIGHT: '#f07da8',
-        MEDIUM: '',
-        DARKEST: '#de2fcf',
-        LIGHTEST: ''
+        PRIMARY: {
+            DARK: '',
+            LIGHT: '',
+            MEDIUM: '',
+            DARKEST: '#a33fcd',
+            LIGHTEST: ''
+        },
+        SHADOW: {
+            DARK: '',
+            LIGHT: '',
+            MEDIUM: '',
+            DARKEST: '',
+            LIGHTEST: ''
+        }
     },
-    BACKGROUND: {
-        BLUE: '#6994ff',
-        PURPLE: '#a33fcd'
+    PINK: {
+        PRIMARY: {
+            DARK: '',
+            LIGHT: '',
+            MEDIUM: '',
+            DARKEST: '#de2fcf',
+            LIGHTEST: ''
+        },
+        SHADOW: {
+            DARK: '',
+            LIGHT: '',
+            MEDIUM: '',
+            DARKEST: '',
+            LIGHTEST: ''
+        }
     },
     ERROR: {
         DEFAULT: '#9f3a38'

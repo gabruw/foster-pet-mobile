@@ -1,15 +1,19 @@
 //#region Imports
 
-import COMPANY_FIELD from 'utils/constants/field/company';
-import COMPANY_LABEL from 'utils/constants/label/company';
+import PERSON_FIELD from 'utils/constants/field/person';
+import PERSON_LABEL from 'utils/constants/label/person';
 import yup from '../yup';
 
 //#endregion
 
-const companySchema = yup.object().shape({
-    [COMPANY_FIELD.CNPJ]: yup.string().required().min(14).max(14).label(COMPANY_LABEL.CNPJ),
-    [COMPANY_FIELD.NAME]: yup.string().required().min(1).max(200).label(COMPANY_LABEL.NAME),
-    [COMPANY_FIELD.FANTASY_NAME]: yup.string().required().min(1).max(200).label(COMPANY_LABEL.FANTASY_NAME)
-});
+const fields = {
+    [PERSON_FIELD.CELL]: yup.string().required().min(9).max(9).label(PERSON_LABEL.CELL),
+    [PERSON_FIELD.CPF]: yup.string().required().min(11).max(11).label(PERSON_LABEL.CPF),
+    [PERSON_FIELD.NAME]: yup.string().required().min(1).max(200).label(PERSON_LABEL.NAME)
+};
 
-export default companySchema;
+export const personSchema = yup.object().shape(fields);
+
+export const personObjectSchema = yup.object().shape({
+    [PERSON_FIELD.THIS]: yup.object().shape(fields)
+});

@@ -5,9 +5,9 @@ import { StyleSheet } from 'react-native';
 
 //#endregion
 
-const { MEDIUM } = COLOR.BLUE;
+const { LIGHT } = COLOR.BLUE.SHADOW;
 
-const useStyles = (marginTop = 20, color = '#FFFFFF', backgroundColor = MEDIUM) =>
+const useStyles = (marginTop = 20, color = '#FFFFFF', backgroundColor = LIGHT) =>
     StyleSheet.create({
         container: {
             marginTop: marginTop

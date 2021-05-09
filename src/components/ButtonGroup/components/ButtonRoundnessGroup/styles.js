@@ -5,11 +5,9 @@ import COLOR from 'assets/styles/color';
 
 //#endregion
 
-const {
-    BLUE: { MEDIUM }
-} = COLOR;
+const { LIGHT } = COLOR.BLUE.SHADOW;
 
-const useStyles = (backgroundColor = MEDIUM) =>
+const useStyles = (backgroundColor = LIGHT) =>
     StyleSheet.create({
         container: {
             flex: 1,

@@ -6,13 +6,11 @@ import { StyleSheet } from 'react-native';
 
 //#endregion
 
-const {
-    ERROR: { DEFAULT }
-} = COLOR;
+const { DEFAULT } = COLOR.ERROR;
 
 const useStyles = () =>
     StyleSheet.create({
-        text: {
+        error: {
             marginTop: 2,
             width: '100%',
             color: DEFAULT,

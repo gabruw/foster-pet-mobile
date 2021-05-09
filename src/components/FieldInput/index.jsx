@@ -1,40 +1,71 @@
 //#region Imports
 
-import React, { useMemo } from 'react';
+import COLOR from 'assets/styles/color';
+import React, { Fragment, useMemo } from 'react';
 import { useController } from 'react-hook-form';
-import { View } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
+import extractDeepNameFromObjects from 'utils/function/extractDeepNameFromObjects';
 import useStyles from './styles';
+import { ActivityIndicator } from 'react-native';
 
 //#endregion
 
-const FieldInput = ({ name, control, errors, outlineColor = '#000000', defaultValue = '', ...rest }) => {
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
+
+const FieldInput = ({
+    name,
+    icon,
+    mask,
+    errors,
+    control,
+    isLoading = true,
+    isDisabled = false,
+    outlineColor = '#000000',
+    ...rest
+}) => {
     const styles = useStyles();
 
     const { field } = useController({
         name,
-        control,
-        defaultValue
+        control
     });
 
-    const error = useMemo(() => errors && errors[name] && errors[name].message, [errors]);
+    const error = useMemo(() => {
+        const value = extractDeepNameFromObjects(name, errors);
+        return value && value.message;
+    }, [name, errors]);
+
+    const handleChange = (text) => {
+        const value = mask ? mask(text) : text;
+        field.onChange(value);
+
+        return value;
+    };
 
     return (
-        <View>
+        <Fragment>
             <TextInput
                 {...rest}
                 error={error}
                 mode='outlined'
                 value={field.value}
-                onChangeText={field.onChange}
                 theme={{
                     colors: {
                         primary: outlineColor
                     }
                 }}
+                onChangeText={(text) => handleChange(text)}
+                left={
+                    isLoading ? (
+                        <ActivityIndicator size='small' color={DARKEST} />
+                    ) : (
+                        icon && <TextInput.Icon name={icon} color={DARKEST} />
+                    )
+                }
             />
-            <Text style={styles.text}>{error}</Text>
-        </View>
+
+            <Text style={styles.error}>{error}</Text>
+        </Fragment>
     );
 };
 

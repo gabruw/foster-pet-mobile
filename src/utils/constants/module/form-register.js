@@ -3,34 +3,36 @@
 import FieldsCompany from 'fields/FieldsCompany';
 import FieldsPerson from 'fields/FieldsPerson';
 import authenticationSchema from 'utils/validation/schemas/authentication';
-import personSchema from 'utils/validation/schemas/company';
-import companySchema from 'utils/validation/schemas/person';
+import { companyObjectSchema } from 'utils/validation/schemas/company';
+import { personObjectSchema } from 'utils/validation/schemas/person';
 
 //#endregion
 
-const FORM_REGISTER_MODULE = {
-    COMPANY: {
-        text: 'Empresa',
-        value: 'COMPANY',
-        component: FieldsCompany
-    },
+export const FORM_REGISTER_VALUES = {
     PERSON: {
         text: 'Person',
-        value: 'PERSON',
-        component: FieldsPerson
+        value: 'PERSON'
+    },
+    COMPANY: {
+        text: 'Empresa',
+        value: 'COMPANY'
     }
 };
 
-export const SCHEMA = {
-    PERSON: personSchema.concat(authenticationSchema),
-    COMPANY: companySchema.concat(authenticationSchema)
+export const FORM_REGISTER_MODULE = {
+    PERSON: {
+        component: FieldsPerson,
+        ...FORM_REGISTER_VALUES.PERSON
+    },
+    COMPANY: {
+        component: FieldsCompany,
+        ...FORM_REGISTER_VALUES.COMPANY
+    }
 };
 
-export const FORM_REGISTER_VALUES = [
-    { text: 'Person', value: 'PERSON' },
-    { text: 'Empresa', value: 'COMPANY' }
-];
+export const FORM_REGISTER_OPTIONS = Object.values(FORM_REGISTER_VALUES);
 
-export const DEFAULT_VALUE = FORM_REGISTER_VALUES[0].value;
-
-export default FORM_REGISTER_MODULE;
+export const FORM_REGISTER_SCHEMA = {
+    PERSON: personObjectSchema.concat(authenticationSchema),
+    COMPANY: companyObjectSchema.concat(authenticationSchema)
+};

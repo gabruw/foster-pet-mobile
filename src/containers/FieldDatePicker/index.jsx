@@ -1,15 +1,11 @@
 //#region Imports
 
 import DateTimePicker from '@react-native-community/datetimepicker';
-import COLOR from 'assets/styles/color';
 import FieldInput from 'components/FieldInput';
 import moment from 'moment';
 import React, { Fragment, useState } from 'react';
-import { TextInput } from 'react-native-paper';
 
 //#endregion
-
-const { PURPLE } = COLOR.BACKGROUND;
 
 const FieldDatePicker = ({ control, errors, setValue, name, label, format = 'DD-MM-YYYY', display = 'default' }) => {
     const [date, setDate] = useState(new Date());
@@ -22,8 +18,8 @@ const FieldDatePicker = ({ control, errors, setValue, name, label, format = 'DD-
                 label={label}
                 errors={errors}
                 control={control}
+                icon='calendar-month'
                 onTouchStart={() => setVisible(true)}
-                left={<TextInput.Icon name='calendar-month' color={PURPLE} />}
             />
 
             {visible && (

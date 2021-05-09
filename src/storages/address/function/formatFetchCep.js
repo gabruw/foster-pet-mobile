@@ -9,9 +9,9 @@ import STATE_FIELD from 'utils/constants/field/state';
 const formatFetchCep = (address) => {
     if (address) {
         address = {
-            [STATE_FIELD.NAME]: address.uf,
+            [STATE_FIELD.THIS]: address.uf,
             [ADDRESS_FIELD.CEP]: address.cep,
-            [CITY_FIELD.NAME]: address.localidade,
+            [CITY_FIELD.THIS]: address.localidade,
             [ADDRESS_FIELD.ROAD]: address.logradouro,
             [ADDRESS_FIELD.NEIGHBORHOOD]: address.bairro,
             [ADDRESS_FIELD.COMPLEMENT]: address.complemento

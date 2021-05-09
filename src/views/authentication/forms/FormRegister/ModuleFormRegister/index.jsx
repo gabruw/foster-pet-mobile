@@ -1,19 +1,22 @@
 //#region Imports
 
-import SubTitleDivider from 'components/SubTitleDivider';
-import React, { Fragment, useMemo } from 'react';
-import FORM_REGISTER_MODULE from 'utils/constants/module/form-register';
+import StateButtonGroup from 'components/ButtonGroup/StateButtonGroup';
+import React from 'react';
+import { View } from 'react-native';
+import { FORM_REGISTER_OPTIONS } from 'utils/constants/module/form-register';
+import ModuleFormRegisterFields from './ModuleFormRegisterFields';
+import useStyles from './styles';
 
 //#endregion
 
-const ModuleFormRegister = ({ form, control, errors, setValue }) => {
-    const { component: Component, text } = useMemo(() => FORM_REGISTER_MODULE[form], [form]);
+const ModuleFormRegister = ({ form, setForm, control, errors, setValue }) => {
+    const styles = useStyles();
 
     return (
-        <Fragment>
-            <SubTitleDivider text={text} />
-            <Component control={control} errors={errors} setValue={setValue} />
-        </Fragment>
+        <View style={styles.container}>
+            <StateButtonGroup get={form} set={setForm} values={FORM_REGISTER_OPTIONS} />
+            <ModuleFormRegisterFields form={form} control={control} errors={errors} setValue={setValue} />
+        </View>
     );
 };
 

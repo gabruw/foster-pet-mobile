@@ -7,13 +7,20 @@ import useStyles from './styles';
 
 //#endregion
 
-const { BLUE, PURPLE } = COLOR.BACKGROUND;
+const { MEDIUM } = COLOR.BLUE.PRIMARY;
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
 const GradientBackground = ({ children }) => {
     const styles = useStyles();
 
     return (
-        <LinearGradient end={[1, 1]} start={[0, 0]} location={[0, 1]} colors={[PURPLE, BLUE]} style={styles.background}>
+        <LinearGradient
+            end={[1, 1]}
+            start={[0, 0]}
+            location={[0, 1]}
+            style={styles.background}
+            colors={[DARKEST, MEDIUM]}
+        >
             {children}
         </LinearGradient>
     );

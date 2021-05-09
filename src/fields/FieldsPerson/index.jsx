@@ -1,49 +1,52 @@
 //#region Imports
 
-import COLOR from 'assets/styles/color';
 import FieldInput from 'components/FieldInput';
 import FieldDatePicker from 'containers/FieldDatePicker';
-import React from 'react';
-import { View } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import React, { Fragment, useMemo } from 'react';
 import PERSON_FIELD from 'utils/constants/field/person';
 import PERSON_LABEL from 'utils/constants/label/person';
+import formatNamesAsObject from 'utils/function/formatNamesAsObject';
 
 //#endregion
 
-const { PURPLE } = COLOR.BACKGROUND;
+const FieldsPerson = ({ control, errors, setValue, inside = false }) => {
+    const PERSON_NAME = useMemo(() => (inside ? formatNamesAsObject(PERSON_FIELD) : PERSON_FIELD), [
+        inside,
+        PERSON_FIELD
+    ]);
 
-const FieldsPerson = ({ control, errors, setValue }) => (
-    <View>
-        <FieldInput
-            errors={errors}
-            control={control}
-            name={PERSON_FIELD.NAME}
-            label={PERSON_LABEL.NAME}
-            left={<TextInput.Icon name='account-box' color={PURPLE} />}
-        />
-        <FieldInput
-            errors={errors}
-            control={control}
-            name={PERSON_FIELD.CPF}
-            label={PERSON_LABEL.CPF}
-            left={<TextInput.Icon name='card-account-details-outline' color={PURPLE} />}
-        />
-        <FieldInput
-            errors={errors}
-            control={control}
-            name={PERSON_FIELD.CELL}
-            label={PERSON_LABEL.CELL}
-            left={<TextInput.Icon name='cellphone' color={PURPLE} />}
-        />
-        <FieldDatePicker
-            errors={errors}
-            control={control}
-            setValue={setValue}
-            name={PERSON_FIELD.BIRTH_DATE}
-            label={PERSON_LABEL.BIRTH_DATE}
-        />
-    </View>
-);
+    return (
+        <Fragment>
+            <FieldInput
+                errors={errors}
+                control={control}
+                icon='account-box'
+                name={PERSON_NAME.NAME}
+                label={PERSON_LABEL.NAME}
+            />
+            <FieldInput
+                errors={errors}
+                control={control}
+                name={PERSON_NAME.CPF}
+                label={PERSON_LABEL.CPF}
+                icon='card-account-details-outline'
+            />
+            <FieldInput
+                errors={errors}
+                icon='cellphone'
+                control={control}
+                name={PERSON_NAME.CELL}
+                label={PERSON_LABEL.CELL}
+            />
+            <FieldDatePicker
+                errors={errors}
+                control={control}
+                setValue={setValue}
+                name={PERSON_NAME.BIRTH_DATE}
+                label={PERSON_LABEL.BIRTH_DATE}
+            />
+        </Fragment>
+    );
+};
 
 export default FieldsPerson;

@@ -10,7 +10,7 @@ import useStyles from './styles';
 
 //#endregion
 
-const { PURPLE } = COLOR.BACKGROUND;
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
 const FieldPicker = ({
     name,
@@ -20,7 +20,7 @@ const FieldPicker = ({
     items = [],
     outlineColor,
     defaultValue = '',
-    iconColor = PURPLE
+    iconColor = DARKEST
 }) => {
     const styles = useStyles(outlineColor);
 

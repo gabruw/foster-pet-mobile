@@ -24,6 +24,11 @@ export const AuthenticationContextProvider = ({ children, defaultValues }) => {
         setIsLoading(requestState.isLoading);
     }, [requestState]);
 
+    const setAuthentication = useCallback(
+        (authentication) => setState((prevState) => ({ ...prevState, authentication })),
+        [setState]
+    );
+
     const setIsLoading = useCallback(
         (isLoading = false) =>
             setState((prevState) => ({
@@ -42,16 +47,16 @@ export const AuthenticationContextProvider = ({ children, defaultValues }) => {
     );
 
     return (
-        <AuthenticationContext.Provider value={{ state, setIsLoading, fetchLogin }}>
+        <AuthenticationContext.Provider value={{ state, setAuthentication, setIsLoading, fetchLogin }}>
             {children}
         </AuthenticationContext.Provider>
     );
 };
 
 const useAuthenticationContext = () => {
-    const { state, setIsLoading, fetchLogin } = useContext(AuthenticationContext);
+    const { state, setAuthentication, setIsLoading, fetchLogin } = useContext(AuthenticationContext);
 
-    return { setIsLoading, fetchLogin, ...state };
+    return { setAuthentication, setIsLoading, fetchLogin, ...state };
 };
 
 export default useAuthenticationContext;

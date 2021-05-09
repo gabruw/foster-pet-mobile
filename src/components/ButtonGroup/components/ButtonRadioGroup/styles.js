@@ -1,7 +1,6 @@
 //#region Imports
 
 import { StyleSheet } from 'react-native';
-import COLOR from 'assets/styles/color';
 
 //#endregion
 
