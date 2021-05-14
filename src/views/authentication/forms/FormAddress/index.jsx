@@ -1,7 +1,8 @@
 //#region Imports
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import ButtonContained from 'components/ButtonContained';
+import Box from 'components/Box';
+import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
 import FieldsAddress from 'fields/FieldsAddress';
 import React, { useCallback, useEffect } from 'react';
@@ -14,8 +15,11 @@ import usePersonContext from 'storages/person/context';
 import ADDRESS_FIELD from 'utils/constants/field/address';
 import addressSchema from 'utils/validation/schemas/address';
 import useStyles from './styles';
+import COLOR from 'assets/styles/color';
 
 //#endregion
+
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
 const FormAddress = () => {
     const styles = useStyles();
@@ -38,10 +42,10 @@ const FormAddress = () => {
 
     useEffect(() => {
         if (address) {
-            setValue(ADDRESS_FIELD.NEIGHBORHOOD, address[ADDRESS_FIELD.NEIGHBORHOOD]);
-            setValue(ADDRESS_FIELD.COMPLEMENT, address[ADDRESS_FIELD.COMPLEMENT]);
-            setValue(ADDRESS_FIELD.NUMBER, address[ADDRESS_FIELD.NUMBER]);
             setValue(ADDRESS_FIELD.ROAD, address[ADDRESS_FIELD.ROAD]);
+            setValue(ADDRESS_FIELD.NUMBER, address[ADDRESS_FIELD.NUMBER]);
+            setValue(ADDRESS_FIELD.COMPLEMENT, address[ADDRESS_FIELD.COMPLEMENT]);
+            setValue(ADDRESS_FIELD.NEIGHBORHOOD, address[ADDRESS_FIELD.NEIGHBORHOOD]);
         }
     }, [address]);
 
@@ -65,17 +69,21 @@ const FormAddress = () => {
 
     return (
         <View style={styles.content}>
-            <SubTitleDivider text='Endereço' />
-            <FieldsAddress control={control} errors={errors} getValues={getValues} />
+            <Box paddingBottom={20}>
+                <SubTitleDivider text='Endereço' color={DARKEST} />
+                <FieldsAddress control={control} errors={errors} getValues={getValues} />
 
-            <ButtonContained
-                marginTop={5}
-                onPress={handleSubmit(onSubmit)}
-                loading={personLoading || companyLoading}
-                disabled={personLoading || companyLoading}
-            >
-                Concluir
-            </ButtonContained>
+                <View style={styles.button}>
+                    <Button
+                        marginTop={5}
+                        onPress={handleSubmit(onSubmit)}
+                        loading={personLoading || companyLoading}
+                        disabled={personLoading || companyLoading}
+                    >
+                        Concluir
+                    </Button>
+                </View>
+            </Box>
         </View>
     );
 };

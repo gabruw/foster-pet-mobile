@@ -8,9 +8,9 @@ import { StyleSheet } from 'react-native';
 const useStyles = () =>
     StyleSheet.create({
         top: {
-            marginTop: 50,
+            marginTop: 20,
             display: 'flex',
-            marginBottom: 20,
+            marginBottom: 5,
             alignItems: 'center'
         },
         logo: {
@@ -21,10 +21,13 @@ const useStyles = () =>
         title: {
             fontSize: 40,
             color: '#FFFFFF',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            fontFamily: 'Geomanist-Medium'
         },
         bottom: {
-            marginTop: 60,
+            marginTop: 20,
+            marginLeft: 30,
+            marginRight: 30,
             ...ALIGN.CENTER
         }
     });

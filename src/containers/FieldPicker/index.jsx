@@ -2,52 +2,41 @@
 
 import { Picker } from '@react-native-picker/picker';
 import COLOR from 'assets/styles/color';
-import React from 'react';
+import FieldLabel from 'components/FieldLabel';
+import React, { Fragment } from 'react';
 import { useController } from 'react-hook-form';
 import { View } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import FieldPickerIcon from './FieldPickerIcon';
 import useStyles from './styles';
 
 //#endregion
 
 const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
-const FieldPicker = ({
-    name,
-    label,
-    control,
-    iconName,
-    items = [],
-    outlineColor,
-    defaultValue = '',
-    iconColor = DARKEST
-}) => {
-    const styles = useStyles(outlineColor);
-
-    const { field } = useController({
-        name,
-        control,
-        defaultValue
-    });
+const FieldPicker = ({ name, label, control, icon, iconColor, items = [], isRequired = true }) => {
+    const styles = useStyles();
+    const { field } = useController({ name, control });
 
     return (
-        <View style={styles.view}>
-            <View styles={styles.iconView}>
-                <TextInput.Icon name={iconName} color={iconColor} style={styles.icon} />
-            </View>
+        <View style={styles.container}>
+            <FieldLabel label={label} isRequired={isRequired} />
 
-            <View style={styles.pickerView}>
-                <Picker
-                    mode='dialog'
-                    style={styles.picker}
-                    selectedValue={field.value}
-                    onValueChange={(itemValue) => field.onChange(itemValue)}
-                >
-                    <Picker.Item label={label} value='' />
-                    {items.map((item) => (
-                        <Picker.Item label={item.text} value={item.value} />
-                    ))}
-                </Picker>
+            <View style={styles.pickerContainer}>
+                <FieldPickerIcon icon={icon} iconColor={iconColor} />
+
+                <View style={styles.containerPicker}>
+                    <Picker
+                        mode='dialog'
+                        style={styles.picker}
+                        selectedValue={field.value}
+                        onValueChange={(itemValue) => field.onChange(itemValue)}
+                    >
+                        <Picker.Item label={label} value={undefined} color={DARKEST} />
+                        {items.map((item) => (
+                            <Picker.Item label={item.text} value={item.value} color={DARKEST} />
+                        ))}
+                    </Picker>
+                </View>
             </View>
         </View>
     );

@@ -18,22 +18,22 @@ const FieldsPerson = ({ control, errors, setValue, inside = false }) => {
     return (
         <Fragment>
             <FieldInput
+                icon='user'
                 errors={errors}
                 control={control}
-                icon='account-box'
                 name={PERSON_NAME.NAME}
                 label={PERSON_LABEL.NAME}
             />
             <FieldInput
+                icon='id-card'
                 errors={errors}
                 control={control}
                 name={PERSON_NAME.CPF}
                 label={PERSON_LABEL.CPF}
-                icon='card-account-details-outline'
             />
             <FieldInput
+                icon='mobile'
                 errors={errors}
-                icon='cellphone'
                 control={control}
                 name={PERSON_NAME.CELL}
                 label={PERSON_LABEL.CELL}

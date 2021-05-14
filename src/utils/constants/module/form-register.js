@@ -10,7 +10,7 @@ import { personObjectSchema } from 'utils/validation/schemas/person';
 
 export const FORM_REGISTER_VALUES = {
     PERSON: {
-        text: 'Person',
+        text: 'Pessoa',
         value: 'PERSON'
     },
     COMPANY: {

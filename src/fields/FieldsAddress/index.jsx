@@ -22,7 +22,7 @@ const FieldsAddress = ({ control, errors, getValues }) => {
                 <FieldInput
                     errors={errors}
                     control={control}
-                    icon='map-marker'
+                    icon='map-marker-alt'
                     name={ADDRESS_FIELD.NAME}
                     label={ADDRESS_LABEL.NAME}
                 />
@@ -33,29 +33,30 @@ const FieldsAddress = ({ control, errors, getValues }) => {
                     icon='road'
                     errors={errors}
                     control={control}
+                    isLoading={isLoading}
                     name={ADDRESS_FIELD.ROAD}
                     label={ADDRESS_LABEL.ROAD}
                 />
                 <FieldInput
-                    icon='home-group'
+                    icon='school'
                     errors={errors}
                     control={control}
                     name={ADDRESS_FIELD.NEIGHBORHOOD}
                     label={ADDRESS_LABEL.NEIGHBORHOOD}
                 />
                 <FieldInput
-                    icon='numeric'
                     errors={errors}
                     control={control}
+                    isLoading={isLoading}
+                    icon='sort-numeric-up'
                     name={ADDRESS_FIELD.NUMBER}
                     label={ADDRESS_LABEL.NUMBER}
                 />
                 <FieldInput
-                    multiline
                     icon='map'
                     errors={errors}
-                    numberOfLines={3}
                     control={control}
+                    isLoading={isLoading}
                     name={ADDRESS_FIELD.COMPLEMENT}
                     label={ADDRESS_LABEL.COMPLEMENT}
                 />

@@ -1,12 +1,13 @@
 //#region Imports
 
-import { yupResolver } from '@hookform/resolvers/yup';
+import COLOR from 'assets/styles/color';
+import Box from 'components/Box/index';
+import FAB from 'components/FAB';
 import SubTitleDivider from 'components/SubTitleDivider';
 import FieldsAuthentication from 'fields/FieldsAuthentication';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
-import { FAB } from 'react-native-paper';
 import useAuthenticationContext from 'storages/authentication/context';
 import useCompanyContext from 'storages/company/context';
 import usePersonContext from 'storages/person/context';
@@ -16,6 +17,8 @@ import ModuleFormRegister from './ModuleFormRegister';
 import useStyles from './styles';
 
 //#endregion
+
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
 const FormRegister = ({ setIsFormRegister }) => {
     const styles = useStyles();
@@ -56,20 +59,24 @@ const FormRegister = ({ setIsFormRegister }) => {
 
     return (
         <View style={styles.container}>
-            <SubTitleDivider text='Autenticação' />
-            <FieldsAuthentication control={control} errors={errors} />
+            <Box>
+                <SubTitleDivider text='Autenticação' color={DARKEST} />
+                <FieldsAuthentication control={control} errors={errors} />
+            </Box>
 
-            <ModuleFormRegister {...{ form, setForm, control, errors, setValue }} />
+            <Box style={styles.box}>
+                <ModuleFormRegister {...{ form, setForm, control, errors, setValue }} />
+            </Box>
 
             <FAB
-                small
-                color='#FFFFFF'
-                icon='arrow-right'
                 style={styles.fab}
+                icon='arrow-right'
                 onPress={handleSubmit(onSubmit)}
-                loading={personLoading || companyLoading}
-                disabled={personLoading || companyLoading}
-            />
+                isLoading={personLoading || companyLoading}
+                isDisabled={personLoading || companyLoading}
+            >
+                Avançar
+            </FAB>
         </View>
     );
 };

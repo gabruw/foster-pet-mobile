@@ -17,9 +17,7 @@ const CityField = ({ control, errors, getValues }) => {
     //     fetchOptions(stateId);
     // }, [fetchOptions]);
 
-    return (
-        <FieldPicker iconName='city' errors={errors} control={control} name={CITY_FIELD.THIS} label={CITY_LABEL.NAME} />
-    );
+    return <FieldPicker icon='city' errors={errors} control={control} name={CITY_FIELD.THIS} label={CITY_LABEL.NAME} />;
 };
 
 export default CityField;

@@ -6,15 +6,36 @@ import { StyleSheet } from 'react-native';
 
 //#endregion
 
-const { DEFAULT } = COLOR.ERROR;
+const { ERROR, PURPLE, BLUE } = COLOR;
 
 const useStyles = () =>
     StyleSheet.create({
+        container: {
+            marginTop: 5,
+            paddingLeft: 0,
+            paddingRight: 0
+        },
+        input: {
+            height: 55,
+            borderWidth: 2,
+            borderRadius: 5,
+            borderBottomWidth: 3,
+            backgroundColor: '#FFFFFF'
+        },
+        inputOnBlur: {
+            borderColor: PURPLE.PRIMARY.DARKEST
+        },
+        inputOnFocus: {
+            borderColor: BLUE.SHADOW.LIGHT
+        },
         error: {
-            marginTop: 2,
+            margin: 0,
+            marginTop: 5,
+            fontSize: 14,
             width: '100%',
-            color: DEFAULT,
-            fontWeight: 'bold',
+            marginBottom: 5,
+            color: ERROR.DEFAULT,
+            fontFamily: 'Geomanist-Medium',
             ...ALIGN.RIGHT
         }
     });

@@ -1,20 +1,19 @@
 //#region Imports
 
+import COLOR from 'assets/styles/color';
 import { StyleSheet } from 'react-native';
 
 //#endregion
 
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
+
 const useStyles = () =>
     StyleSheet.create({
-        content: {
-            flex: 1
+        icon: {
+            color: DARKEST
         },
-        container: {
-            marginTop: 15,
-            marginBottom: 5
-        },
-        button: {
-            marginLeft: 10,
+        right: {
+            marginLeft: 5,
             marginRight: 10
         }
     });

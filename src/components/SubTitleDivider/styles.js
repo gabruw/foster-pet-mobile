@@ -5,14 +5,18 @@ import { StyleSheet } from 'react-native';
 
 //#endregion
 
-const useStyles = (color = '#FFFFFF') =>
+const useStyles = (color = '#FFFFFF', marginTop = 5, marginBottom = 5) =>
     StyleSheet.create({
-        content: {},
+        content: {
+            marginTop: marginTop,
+            marginBottom: marginBottom
+        },
         text: {
+            color: color,
             fontSize: 20,
             width: '100%',
             marginBottom: 5,
-            color: color,
+            fontFamily: 'Geomanist-Medium',
             ...ALIGN.LEFT
         },
         divider: {

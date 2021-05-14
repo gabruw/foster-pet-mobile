@@ -19,7 +19,7 @@ const FieldsCompany = ({ control, errors, inside = false }) => {
             <FieldInput
                 errors={errors}
                 control={control}
-                icon='office-building'
+                icon='building'
                 name={COMPANY_NAME.NAME}
                 label={COMPANY_LABEL.NAME}
             />
@@ -31,7 +31,7 @@ const FieldsCompany = ({ control, errors, inside = false }) => {
                 label={COMPANY_LABEL.FANTASY_NAME}
             />
             <FieldInput
-                icon='counter'
+                icon='passport'
                 errors={errors}
                 control={control}
                 name={COMPANY_NAME.CNPJ}

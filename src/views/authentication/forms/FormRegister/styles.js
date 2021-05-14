@@ -9,11 +9,12 @@ const useStyles = () =>
         container: {
             flex: 1
         },
+        box: {
+            marginTop: 20
+        },
         fab: {
-            right: 0,
-            bottom: 20,
-            position: 'absolute',
-            color: '#FFF'
+            left: 100,
+            bottom: 15
         }
     });
 

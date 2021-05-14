@@ -1,12 +1,11 @@
 //#region Imports
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import ButtonContained from 'components/ButtonContained';
+import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
 import FieldsAuthentication from 'fields/FieldsAuthentication';
-import React, { useCallback } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
 import useAuthenticationContext from 'storages/authentication/context';
 import authenticationSchema from 'utils/validation/schemas/authentication';
 
@@ -27,14 +26,14 @@ const FormLogin = () => {
     const onSubmit = useCallback((data) => fetchLogin(data), [fetchLogin]);
 
     return (
-        <View>
+        <Fragment>
             <SubTitleDivider text='Login' />
-            <FieldsAuthentication control={control} errors={errors} />
+            <FieldsAuthentication control={control} errors={errors} hasContrast />
 
-            <ButtonContained loading={isLoading} disabled={isLoading} onPress={handleSubmit(onSubmit)}>
+            <Button loading={isLoading} disabled={isLoading} onPress={handleSubmit(onSubmit)}>
                 Entrar
-            </ButtonContained>
-        </View>
+            </Button>
+        </Fragment>
     );
 };
 

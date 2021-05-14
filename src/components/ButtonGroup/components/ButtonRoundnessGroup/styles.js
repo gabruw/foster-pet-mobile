@@ -44,10 +44,13 @@ const useStyles = (backgroundColor = LIGHT) =>
         active: {
             backgroundColor: backgroundColor
         },
+        text: {
+            fontFamily: 'Geomanist-Medium'
+        },
         textActive: {
             color: '#FFFFFF'
         },
-        text: {
+        textUnactive: {
             color: backgroundColor
         }
     });

@@ -16,13 +16,7 @@ const StateField = ({ control, errors }) => {
     // }, []);
 
     return (
-        <FieldPicker
-            errors={errors}
-            control={control}
-            iconName='home-account'
-            name={STATE_FIELD.THIS}
-            label={STATE_LABEL.NAME}
-        />
+        <FieldPicker icon='flag' errors={errors} control={control} name={STATE_FIELD.THIS} label={STATE_LABEL.NAME} />
     );
 };
 

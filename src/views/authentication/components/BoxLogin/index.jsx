@@ -1,15 +1,18 @@
 //#region Imports
 
 import Logo from 'assets/images/logo.png';
-import ButtonContained from 'components/ButtonContained';
+import Button from 'components/Button';
 import Margin from 'components/Margin';
 import React from 'react';
 import { Image, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import FormLogin from '../../forms/FormLogin';
 import useStyles from './styles';
+import COLOR from 'assets/styles/color';
 
 //#endregion
+
+const { LIGHT } = COLOR.BLUE.PRIMARY;
 
 const BoxLogin = ({ setIsLogin }) => {
     const styles = useStyles();
@@ -24,9 +27,16 @@ const BoxLogin = ({ setIsLogin }) => {
             <FormLogin />
 
             <View style={styles.bottom}>
-                <ButtonContained mode='outlined' backgoundColor='#FFFFFF' onPress={() => setIsLogin(false)} rounded>
+                <Button
+                    invert
+                    fontSize={14}
+                    type='outline'
+                    loaderColor={LIGHT}
+                    backgoundColor={LIGHT}
+                    onPress={() => setIsLogin(false)}
+                >
                     Criar uma nova conta
-                </ButtonContained>
+                </Button>
             </View>
         </Margin>
     );

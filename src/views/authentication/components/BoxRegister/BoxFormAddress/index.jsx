@@ -11,7 +11,7 @@ const BoxFormAddress = ({ setIsFormRegister }) => (
     <Fragment>
         <ButtonReturn onPress={() => setIsFormRegister(true)} />
 
-        <Margin paddingTop={0}>
+        <Margin paddingLeft={0} paddingRight={0} paddingTop={0}>
             <FormAddress />
         </Margin>
     </Fragment>

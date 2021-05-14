@@ -26,8 +26,9 @@ const ButtonRoundnessGroup = ({ values = [], active, setActive, backgroundColor,
     const textStyles = useCallback(
         (value) =>
             clsx({
-                [styles.text]: value !== active,
-                [styles.textActive]: value === active
+                [styles.text]: true,
+                [styles.textActive]: value === active,
+                [styles.textUnactive]: value !== active
             }),
         [styles, active]
     );

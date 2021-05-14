@@ -15,10 +15,10 @@ const FieldCep = ({ control, errors, getValues }) => {
     return (
         <FieldInput
             mask={cep}
+            icon='sign'
             errors={errors}
             control={control}
             isLoading={isLoading}
-            icon='sign-direction'
             name={ADDRESS_FIELD.CEP}
             label={ADDRESS_LABEL.CEP}
             onBlur={() => fetchCep(getValues(ADDRESS_FIELD.CEP))}

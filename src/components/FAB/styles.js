@@ -7,8 +7,11 @@ import { StyleSheet } from 'react-native';
 const useStyles = () =>
     StyleSheet.create({
         container: {
-            marginTop: 15,
-            marginBottom: 5
+            position: 'absolute'
+        },
+        title: {
+            fontFamily: 'Geomanist-Medium',
+            fontSize: 14
         }
     });
 

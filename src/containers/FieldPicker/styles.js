@@ -1,50 +1,41 @@
 //#region Imports
 
+import ALIGN from 'assets/styles/align';
+import COLOR from 'assets/styles/color';
 import { Dimensions, StyleSheet } from 'react-native';
 
 //#endregion
 
-const useStyles = (outlineColor = 'rgba(0, 0, 0, 0.54)') =>
+const { DARKEST } = COLOR.PURPLE.PRIMARY;
+
+const useStyles = () =>
     StyleSheet.create({
-        view: {
-            borderWidth: 1,
-            borderRadius: 4,
-            display: 'flex',
-            marginBottom: 20,
+        container: {
+            marginTop: 5,
+            marginLeft: 10,
+            marginRight: 10,
+            marginBottom: 5
+        },
+        pickerContainer: {
+            borderWidth: 2,
+            borderRadius: 5,
             flexDirection: 'row',
-            borderColor: outlineColor,
-            justifyContent: 'space-between',
-            backgroundColor: 'rgb(246, 246, 246)'
+            borderColor: DARKEST,
+            backgroundColor: '#FFFFFF',
+            ...ALIGN.BETWEEN
         },
-        iconView: {
-            width: 50,
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-            justifyContent: 'flex-end'
-        },
-        icon: {
-            width: 50,
-            height: 55,
-            display: 'flex',
-            overflow: 'visible',
-            alignItems: 'flex-end',
-            justifyContent: 'flex-end'
-        },
-        pickerView: {
+        containerPicker: {
             borderRadius: 4,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            width: Dimensions.get('window').width - 95
+            width: Dimensions.get('window').width - 125,
+            ...ALIGN.RIGHT
         },
         picker: {
-            height: 60,
+            height: 50,
             fontSize: 16,
             width: '100%',
             borderColor: 'transparent',
-            fontFamily: 'Geomanist-Medium',
-            backgroundColor: 'rgb(246, 246, 246)'
+            backgroundColor: '#FFFFFF',
+            fontFamily: 'Geomanist-Medium'
         }
     });
 

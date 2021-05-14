@@ -4,7 +4,7 @@ import Logo from 'assets/images/logo.png';
 import GradientBackground from 'components/GradientBackground';
 import React from 'react';
 import { ActivityIndicator, Image, View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text } from 'react-native-elements';
 import useStyles from './styles';
 
 //#endregion
