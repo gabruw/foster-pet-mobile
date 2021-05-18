@@ -1,25 +1,16 @@
 //#region Imports
 
-import ROUTE_NAME from './route-name';
+import Authentication from 'views/authentication';
 
 //#endregion
 
-const ROUTES = [
+export const ROUTE_NAMES = {
+    AUTHENTICATION: 'Authentication'
+};
+
+export const STACK_ROUTES = [
     {
-        path: '/',
-        exact: true,
-        component: require('../views/authentication').default
-    },
-    {
-        exact: true,
-        path: ROUTE_NAME.AUTHENTICATION,
-        component: require('../views/authentication').default
-    },
-    {
-        path: '*',
-        exact: true,
-        component: require('../views/error').default
+        Component: Authentication,
+        name: ROUTE_NAMES.AUTHENTICATION
     }
 ];
-
-export default ROUTES;

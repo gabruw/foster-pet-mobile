@@ -4,7 +4,7 @@ import COLOR from 'assets/styles/color';
 import React, { Fragment, useMemo } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import clsx from 'utils/function/clsx';
+import clsx from 'utils/functions/clsx';
 import useStyles from './styles';
 
 //#endregion

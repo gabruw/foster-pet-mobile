@@ -1,9 +1,9 @@
 //#region Imports
 
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
-import PERSON_FIELD from 'utils/constants/field/person';
-import isInvalid from 'utils/function/isInvalid';
+import PERSON_FIELDS from 'utils/constants/fields/person';
+import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
+import isInvalid from 'utils/functions/isInvalid';
 import useRequestState from 'utils/hooks/useRequestState';
 import { postRegister } from './services/send-data';
 
@@ -12,7 +12,7 @@ import { postRegister } from './services/send-data';
 const PersonContext = createContext();
 
 const initialState = {
-    [PERSON_FIELD.THIS]: null,
+    [PERSON_FIELDS.THIS]: null,
     ...CONTEXT_INITIAL_STATE
 };
 
@@ -35,10 +35,12 @@ export const PersonContextProvider = ({ children, defaultValues }) => {
 
     const register = useCallback(
         async (form) => {
-            const data = await run(() => postRegister(form));
-            setState((prevState) => ({ ...prevState, [PERSON_FIELD.THIS]: data.data, error: data.errors }));
+            if (form[PERSON_FIELDS.THIS]) {
+                const data = await run(() => postRegister(form));
+                setState((prevState) => ({ ...prevState, [PERSON_FIELDS.THIS]: data.data, error: data.errors }));
+            }
         },
-        [run, setState, requestState]
+        [run, setState]
     );
 
     return <PersonContext.Provider value={{ state, setIsLoading, register }}>{children}</PersonContext.Provider>;

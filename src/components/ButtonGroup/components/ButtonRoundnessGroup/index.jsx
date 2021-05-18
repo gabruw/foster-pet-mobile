@@ -3,7 +3,7 @@
 import React, { Fragment, useCallback } from 'react';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
-import clsx from 'utils/function/clsx';
+import clsx from 'utils/functions/clsx';
 import useStyles from './styles';
 
 //#endregion

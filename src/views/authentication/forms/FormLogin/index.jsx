@@ -1,13 +1,13 @@
 //#region Imports
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import FieldsAuthentication from 'components-field/FieldsAuthentication';
 import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
-import FieldsAuthentication from 'fields/FieldsAuthentication';
 import React, { Fragment, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuthenticationContext from 'storages/authentication/context';
-import authenticationSchema from 'utils/validation/schemas/authentication';
+import authenticationSchema from 'utils/validations/yup/schemas/authentication';
 
 //#endregion
 

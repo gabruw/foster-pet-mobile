@@ -1,9 +1,9 @@
 //#region Imports
 
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
-import STATE_FIELD from 'utils/constants/field/state';
-import isInvalid from 'utils/function/isInvalid';
+import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
+import STATE_FIELDS from 'utils/constants/fields/state';
+import isInvalid from 'utils/functions/isInvalid';
 import useRequestState from 'utils/hooks/useRequestState';
 import { getOptions } from './services/send-data';
 
@@ -12,7 +12,7 @@ import { getOptions } from './services/send-data';
 const StateContext = createContext();
 
 const initialState = {
-    [STATE_FIELD.THIS]: null,
+    [STATE_FIELDS.THIS]: null,
     ...CONTEXT_INITIAL_STATE
 };
 
@@ -36,7 +36,7 @@ export const StateContextProvider = ({ children, defaultValues }) => {
     const fetchOptions = useCallback(
         async (stateId) => {
             const { data, errors } = await run(() => getOptions(stateId));
-            setState((prevState) => ({ ...prevState, [STATE_FIELD.THIS]: data, error: errors }));
+            setState((prevState) => ({ ...prevState, [STATE_FIELDS.THIS]: data, error: errors }));
         },
         [run, setState, requestState]
     );

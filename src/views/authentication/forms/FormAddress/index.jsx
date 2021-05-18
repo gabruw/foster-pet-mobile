@@ -1,21 +1,18 @@
 //#region Imports
 
-import { yupResolver } from '@hookform/resolvers/yup';
+import COLOR from 'assets/styles/color';
 import Box from 'components/Box';
 import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
-import FieldsAddress from 'fields/FieldsAddress';
-import React, { useCallback, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import FieldsAddress from 'components-field/FieldsAddress';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { View } from 'react-native';
 import useAddressContext from 'storages/address/context';
 import useAuthenticationContext from 'storages/authentication/context';
-import useCompanyContext from 'storages/company/context';
 import usePersonContext from 'storages/person/context';
-import ADDRESS_FIELD from 'utils/constants/field/address';
-import addressSchema from 'utils/validation/schemas/address';
+import ADDRESS_FIELDS from 'utils/constants/fields/address';
+import useUserType from 'utils/hooks/useUserType';
 import useStyles from './styles';
-import COLOR from 'assets/styles/color';
 
 //#endregion
 
@@ -24,61 +21,44 @@ const { DARKEST } = COLOR.PURPLE.PRIMARY;
 const FormAddress = () => {
     const styles = useStyles();
 
-    const { address } = useAddressContext();
+    const { isLoading: userLoading } = useUserType();
     const { authentication } = useAuthenticationContext();
-    const { isLoading: personLoading, register: personRegister } = usePersonContext();
-    const { isLoading: companyLoading, register: companyRegister } = useCompanyContext();
+    const { register: personRegister } = usePersonContext();
+    const { address, form, isLoading: addressLoading } = useAddressContext();
 
-    const {
-        control,
-        setValue,
-        getValues,
-        handleSubmit,
-        formState: { errors }
-    } = useForm({
-        reValidateMode: 'onBlur',
-        resolver: yupResolver(addressSchema)
-    });
+    const { setValue, handleSubmit } = form;
 
     useEffect(() => {
         if (address) {
-            setValue(ADDRESS_FIELD.ROAD, address[ADDRESS_FIELD.ROAD]);
-            setValue(ADDRESS_FIELD.NUMBER, address[ADDRESS_FIELD.NUMBER]);
-            setValue(ADDRESS_FIELD.COMPLEMENT, address[ADDRESS_FIELD.COMPLEMENT]);
-            setValue(ADDRESS_FIELD.NEIGHBORHOOD, address[ADDRESS_FIELD.NEIGHBORHOOD]);
+            setValue(ADDRESS_FIELDS.ROAD, address[ADDRESS_FIELDS.ROAD]);
+            setValue(ADDRESS_FIELDS.NUMBER, address[ADDRESS_FIELDS.NUMBER]);
+            setValue(ADDRESS_FIELDS.COMPLEMENT, address[ADDRESS_FIELDS.COMPLEMENT]);
+            setValue(ADDRESS_FIELDS.NEIGHBORHOOD, address[ADDRESS_FIELDS.NEIGHBORHOOD]);
         }
     }, [address]);
+
+    const handleDisableLoading = useMemo(() => addressLoading || userLoading, [addressLoading, userLoading]);
 
     const onSubmit = useCallback(
         (data) => {
             data = { ...data, authentication };
-
-            switch (key) {
-                case 'PERSON':
-                    personRegister(data);
-                    break;
-                case 'COMPANY':
-                    companyRegister(data);
-                    break;
-                default:
-                    break;
-            }
+            personRegister(data);
         },
-        [authentication, personRegister, companyRegister]
+        [authentication, personRegister]
     );
 
     return (
         <View style={styles.content}>
             <Box paddingBottom={20}>
                 <SubTitleDivider text='Endereço' color={DARKEST} />
-                <FieldsAddress control={control} errors={errors} getValues={getValues} />
+                <FieldsAddress />
 
                 <View style={styles.button}>
                     <Button
                         marginTop={5}
+                        loading={handleDisableLoading}
+                        disabled={handleDisableLoading}
                         onPress={handleSubmit(onSubmit)}
-                        loading={personLoading || companyLoading}
-                        disabled={personLoading || companyLoading}
                     >
                         Concluir
                     </Button>

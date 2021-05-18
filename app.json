@@ -1,20 +1,21 @@
 {
-    "name": "FosterPet",
+    "name": "Foster Pet",
     "displayName": "FosterPet",
     "expo": {
-        "name": "FosterPet",
-        "slug": "FosterPet",
         "version": "1.0.0",
         "privacy": "public",
+        "slug": "FosterPet",
+        "name": "Foster Pet",
         "sdkVersion": "41.0.0",
         "orientation": "portrait",
-        "icon": "./src/assets/expo/icon.png",
+        "entryPoint": "./src/index.js",
         "assetBundlePatterns": ["**/*"],
+        "icon": "./src/assets/images/icon.png",
         "platforms": ["ios", "android", "web"],
         "splash": {
-            "image": "./src/assets/expo/splash.png",
             "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "backgroundColor": "#ffffff",
+            "image": "./src/assets/images/splash.png"
         },
         "packagerOpts": {
             "config": "metro.config.js",

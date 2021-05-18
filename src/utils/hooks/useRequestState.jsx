@@ -1,10 +1,10 @@
 //#region Imports
 
+import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import ROUTE_NAME from 'routes/route-name';
-import MISC_ERROR from 'utils/constants/error/misc';
-import sleep from 'utils/function/sleep';
+import MISC_ERRORS from 'utils/constants/errors/misc';
+import sleep from 'utils/functions/sleep';
+import { ROUTE_NAMES } from 'routes/routes';
 
 //#endregion
 
@@ -16,17 +16,17 @@ const initalState = {
 };
 
 const useRequestState = () => {
-    const history = useHistory();
+    const { navigate } = useNavigation();
     const [requestState, setRequestState] = useState(initalState);
 
     const clear = useCallback((timeout = 100) => setTimeout(() => setRequestState(initalState), timeout), []);
 
     const run = useCallback(
         async (callback, options) => {
-            setRequestState({ ...initalState, isLoading: true, success: undefined });
+            setRequestState({ ...initalState, isLoading: true, success: false });
 
-            if (options?.sleep) {
-                await sleep(options?.sleepTimeout || 3000);
+            if (options && options.sleep) {
+                await sleep(options.sleepTimeout || 3000);
             }
 
             let responseObj = null;
@@ -45,16 +45,16 @@ const useRequestState = () => {
             } catch (error) {
                 const responseError = error && error.response;
                 if (responseError && responseError.status === 401) {
-                    history.push([ROUTE_NAME.AUTHENTICATION]);
+                    navigate(ROUTE_NAMES.AUTHENTICATION);
                 }
 
-                if (options?.autoClear) {
+                if (options && options.autoClear) {
                     clear(5000);
                 }
 
                 responseObj = {
                     ...initalState,
-                    errors: responseError && responseError.data ? responseError.data.errors : MISC_ERROR.UNKNOW
+                    errors: responseError && responseError.data ? responseError.data.errors : MISC_ERRORS.UNKNOW
                 };
             }
 

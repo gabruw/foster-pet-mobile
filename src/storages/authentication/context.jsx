@@ -1,18 +1,18 @@
 //#region Imports
 
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
-import AUTHENTICATION_FIELD from 'utils/constants/field/authentication';
+import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
+import AUTHENTICATION_FIELDS from 'utils/constants/fields/authentication';
 import useRequestState from 'utils/hooks/useRequestState';
 import { postLogin } from './services/send-data';
-import isInvalid from 'utils/function/isInvalid';
+import isInvalid from 'utils/functions/isInvalid';
 
 //#endregion
 
 const AuthenticationContext = createContext();
 
 const initialState = {
-    [AUTHENTICATION_FIELD.THIS]: null,
+    [AUTHENTICATION_FIELDS.THIS]: null,
     ...CONTEXT_INITIAL_STATE
 };
 
@@ -41,7 +41,7 @@ export const AuthenticationContextProvider = ({ children, defaultValues }) => {
     const fetchLogin = useCallback(
         async (form) => {
             const data = await run(() => postLogin(form));
-            setState((prevState) => ({ ...prevState, [AUTHENTICATION_FIELD.THIS]: data.data, error: data.errors }));
+            setState((prevState) => ({ ...prevState, [AUTHENTICATION_FIELDS.THIS]: data.data, error: data.errors }));
         },
         [run, setState, requestState]
     );

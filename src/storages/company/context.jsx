@@ -1,9 +1,9 @@
 //#region Imports
 
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import CONTEXT_INITIAL_STATE from 'utils/constants/context-initial-state';
-import COMPANY_FIELD from 'utils/constants/field/company';
-import isInvalid from 'utils/function/isInvalid';
+import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
+import COMPANY_FIELDS from 'utils/constants/fields/company';
+import isInvalid from 'utils/functions/isInvalid';
 import useRequestState from 'utils/hooks/useRequestState';
 import { postRegister } from './services/send-data';
 
@@ -12,7 +12,7 @@ import { postRegister } from './services/send-data';
 const CompanyContext = createContext();
 
 const initialState = {
-    [COMPANY_FIELD.THIS]: null,
+    [COMPANY_FIELDS.THIS]: null,
     ...CONTEXT_INITIAL_STATE
 };
 
@@ -36,7 +36,7 @@ export const CompanyContextProvider = ({ children, defaultValues }) => {
     const register = useCallback(
         async (form) => {
             const data = await run(() => postRegister(form));
-            setState((prevState) => ({ ...prevState, [COMPANY_FIELD.THIS]: data.data, error: data.errors }));
+            setState((prevState) => ({ ...prevState, [COMPANY_FIELDS.THIS]: data.data, error: data.errors }));
         },
         [run, setState, requestState]
     );

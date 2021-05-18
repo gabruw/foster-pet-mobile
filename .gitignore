@@ -20,23 +20,17 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
+project.xcworkspace
 
 # node.js
 #
+.env
 node_modules
 node_modules/**/*
-npm-debug.*
+npm-debug.log
 yarn-error.log
 
-# Expo
+# expo
 #
 .expo
 *.jks
@@ -47,6 +41,11 @@ yarn-error.log
 *.orig.*
 web-build/
 web-report/
+
+# sonnar
+#
+.scannerwork
+test-report.*
 
 # BUCK
 #

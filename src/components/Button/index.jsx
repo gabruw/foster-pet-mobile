@@ -3,7 +3,7 @@
 import COLOR from 'assets/styles/color';
 import React from 'react';
 import { Button as ButtonNative } from 'react-native-elements';
-import clsx from 'utils/function/clsx';
+import clsx from 'utils/functions/clsx';
 import useStyles from './styles';
 
 //#endregion

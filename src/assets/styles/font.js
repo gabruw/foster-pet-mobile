@@ -1,15 +1,12 @@
 const FONT = {
-    LIGHT: {
-        fontFamily: 'Geomanist-Light'
+    REGULAR: {
+        fontFamily: 'Geomanist'
     },
     MEDIUM: {
         fontFamily: 'Geomanist-Medium'
     },
     BOLD: {
         fontFamily: 'Geomanist-Bold'
-    },
-    REGULAR: {
-        fontFamily: 'Geomanist'
     }
 };
 

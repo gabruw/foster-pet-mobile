@@ -1,6 +1,7 @@
 //#region Imports
 
 import Logo from 'assets/images/logo.png';
+import COLOR from 'assets/styles/color';
 import Button from 'components/Button';
 import Margin from 'components/Margin';
 import React from 'react';
@@ -8,7 +9,6 @@ import { Image, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import FormLogin from '../../forms/FormLogin';
 import useStyles from './styles';
-import COLOR from 'assets/styles/color';
 
 //#endregion
 

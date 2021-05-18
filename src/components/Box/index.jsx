@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
-import clsx from 'utils/function/clsx';
+import clsx from 'utils/functions/clsx';
 import useStyles from './styles';
 
 //#endregion
