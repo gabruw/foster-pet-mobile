@@ -1,11 +1,11 @@
 //#region Imports
 
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import AUTHENTICATION_FIELDS from 'utils/constants/fields/authentication';
-import useRequestState from 'utils/hooks/useRequestState';
-import { postLogin } from './services/send-data';
+import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
 import isInvalid from 'utils/functions/isInvalid';
+import authenticationSchema from 'utils/validations/yup/schemas/authentication';
+import useAuthenticationService from './service';
 
 //#endregion
 
@@ -13,21 +13,13 @@ const AuthenticationContext = createContext();
 
 const initialState = {
     [AUTHENTICATION_FIELDS.THIS]: null,
+    isLogin: true,
+    isFormRegister: true,
     ...CONTEXT_INITIAL_STATE
 };
 
-export const AuthenticationContextProvider = ({ children, defaultValues }) => {
-    const { run, requestState } = useRequestState();
+export const AuthenticationContextProvider = ({ children, defaultValues, schema = authenticationSchema }) => {
     const [state, setState] = useState({ ...initialState, ...defaultValues });
-
-    useEffect(() => {
-        setIsLoading(requestState.isLoading);
-    }, [requestState]);
-
-    const setAuthentication = useCallback(
-        (authentication) => setState((prevState) => ({ ...prevState, authentication })),
-        [setState]
-    );
 
     const setIsLoading = useCallback(
         (isLoading = false) =>
@@ -38,25 +30,36 @@ export const AuthenticationContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    const fetchLogin = useCallback(
-        async (form) => {
-            const data = await run(() => postLogin(form));
-            setState((prevState) => ({ ...prevState, [AUTHENTICATION_FIELDS.THIS]: data.data, error: data.errors }));
-        },
-        [run, setState, requestState]
+    const setAuthentication = useCallback(
+        (authentication, errors = null) => setState((prevState) => ({ ...prevState, authentication, errors })),
+        [setState]
     );
 
+    const setIsFormRegister = useCallback(
+        (isFormRegister = false) => setState((prevState) => ({ ...prevState, isFormRegister })),
+        [setState]
+    );
+
+    const setIsLogin = useCallback((isLogin = false) => setState((prevState) => ({ ...prevState, isLogin })), [
+        setState
+    ]);
+
     return (
-        <AuthenticationContext.Provider value={{ state, setAuthentication, setIsLoading, fetchLogin }}>
+        <AuthenticationContext.Provider
+            value={{ state, setIsLoading, setAuthentication, setIsFormRegister, setIsLogin }}
+        >
             {children}
         </AuthenticationContext.Provider>
     );
 };
 
 const useAuthenticationContext = () => {
-    const { state, setAuthentication, setIsLoading, fetchLogin } = useContext(AuthenticationContext);
+    const context = useContext(AuthenticationContext);
+    const service = useAuthenticationService(context);
 
-    return { setAuthentication, setIsLoading, fetchLogin, ...state };
+    const { state, setIsLoading, setAuthentication, setIsFormRegister, setIsLogin } = context;
+
+    return { setIsLoading, setAuthentication, setIsFormRegister, setIsLogin, ...state, ...service };
 };
 
 export default useAuthenticationContext;

@@ -1,11 +1,10 @@
 //#region Imports
 
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import PERSON_FIELDS from 'utils/constants/fields/person';
 import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
 import isInvalid from 'utils/functions/isInvalid';
-import useRequestState from 'utils/hooks/useRequestState';
-import { postRegister } from './services/send-data';
+import usePersonService from './service';
 
 //#endregion
 
@@ -17,12 +16,7 @@ const initialState = {
 };
 
 export const PersonContextProvider = ({ children, defaultValues }) => {
-    const { run, requestState } = useRequestState();
     const [state, setState] = useState({ ...initialState, ...defaultValues });
-
-    useEffect(() => {
-        setIsLoading(requestState.isLoading);
-    }, [requestState]);
 
     const setIsLoading = useCallback(
         (isLoading = false) =>
@@ -33,23 +27,16 @@ export const PersonContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    const register = useCallback(
-        async (form) => {
-            if (form[PERSON_FIELDS.THIS]) {
-                const data = await run(() => postRegister(form));
-                setState((prevState) => ({ ...prevState, [PERSON_FIELDS.THIS]: data.data, error: data.errors }));
-            }
-        },
-        [run, setState]
-    );
-
-    return <PersonContext.Provider value={{ state, setIsLoading, register }}>{children}</PersonContext.Provider>;
+    return <PersonContext.Provider value={{ state, setIsLoading }}>{children}</PersonContext.Provider>;
 };
 
 const usePersonContext = () => {
-    const { state, setIsLoading, register } = useContext(PersonContext);
+    const context = useContext(PersonContext);
+    const service = usePersonService(context);
 
-    return { setIsLoading, register, ...state };
+    const { state, setIsLoading } = context;
+
+    return { setIsLoading, ...state, ...service };
 };
 
 export default usePersonContext;

@@ -4,12 +4,19 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import FieldInput from 'components/FieldInput';
 import moment from 'moment';
 import React, { Fragment, useState } from 'react';
+import useFormContext from 'storages/form/context';
 
 //#endregion
 
-const FieldDatePicker = ({ control, errors, setValue, name, label, format = 'DD-MM-YYYY', display = 'default' }) => {
+const FieldDatePicker = ({ name, label, format = 'DD-MM-YYYY', display = 'default' }) => {
     const [date, setDate] = useState(new Date());
     const [visible, setVisible] = useState(false);
+
+    const {
+        control,
+        setValue,
+        formState: { errors }
+    } = useFormContext();
 
     return (
         <Fragment>

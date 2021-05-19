@@ -4,6 +4,7 @@ import FieldLabel from 'components/FieldLabel';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
 import { Input } from 'react-native-elements';
+import useFormContext from 'storages/form/context';
 import clsx from 'utils/functions/clsx';
 import extractDeepNameFromObjects from 'utils/functions/extractDeepNameFromObjects';
 import FieldInputLeftIcon from './FieldInputLeftIcon';
@@ -18,9 +19,7 @@ const FieldInput = ({
     mask,
     color,
     label,
-    errors,
     onBlur,
-    control,
     onFocus,
     labelColor,
     placeholder,
@@ -33,6 +32,11 @@ const FieldInput = ({
 }) => {
     const styles = useStyles();
     const inputRef = useRef(null);
+
+    const {
+        control,
+        formState: { errors }
+    } = useFormContext();
 
     const [isFocused, setIsFocused] = useState(false);
     const [visible, setVisible] = useState(isPassword);

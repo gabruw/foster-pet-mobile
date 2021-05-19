@@ -1,30 +1,30 @@
 //#region Imports
 
 import COLOR from 'assets/styles/color';
+import FieldsAddress from 'components-field/FieldsAddress';
 import Box from 'components/Box';
 import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
-import FieldsAddress from 'components-field/FieldsAddress';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 import useAddressContext from 'storages/address/context';
 import useAuthenticationContext from 'storages/authentication/context';
-import usePersonContext from 'storages/person/context';
+import { FormContextProvider } from 'storages/form/context';
+import useUserContext from 'storages/user/context';
 import ADDRESS_FIELDS from 'utils/constants/fields/address';
-import useUserType from 'utils/hooks/useUserType';
+import addressSchema from 'utils/validations/yup/schemas/address';
 import useStyles from './styles';
 
 //#endregion
 
 const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
-const FormAddress = () => {
+const FormContent = () => {
     const styles = useStyles();
 
-    const { isLoading: userLoading } = useUserType();
     const { authentication } = useAuthenticationContext();
-    const { register: personRegister } = usePersonContext();
-    const { address, form, isLoading: addressLoading } = useAddressContext();
+    const { register, isLoading: userIsLoading } = useUserContext();
+    const { address, form, isLoading: addressIsLoading } = useAddressContext();
 
     const { setValue, handleSubmit } = form;
 
@@ -37,14 +37,12 @@ const FormAddress = () => {
         }
     }, [address]);
 
-    const handleDisableLoading = useMemo(() => addressLoading || userLoading, [addressLoading, userLoading]);
-
     const onSubmit = useCallback(
         (data) => {
             data = { ...data, authentication };
-            personRegister(data);
+            register(data);
         },
-        [authentication, personRegister]
+        [authentication, register]
     );
 
     return (
@@ -56,9 +54,9 @@ const FormAddress = () => {
                 <View style={styles.button}>
                     <Button
                         marginTop={5}
-                        loading={handleDisableLoading}
-                        disabled={handleDisableLoading}
                         onPress={handleSubmit(onSubmit)}
+                        loading={userIsLoading || addressIsLoading}
+                        disabled={userIsLoading || addressIsLoading}
                     >
                         Concluir
                     </Button>
@@ -67,5 +65,11 @@ const FormAddress = () => {
         </View>
     );
 };
+
+const FormAddress = () => (
+    <FormContextProvider schema={addressSchema}>
+        <FormContent />
+    </FormContextProvider>
+);
 
 export default FormAddress;

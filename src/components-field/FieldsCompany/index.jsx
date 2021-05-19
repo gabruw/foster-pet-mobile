@@ -8,7 +8,7 @@ import formatNamesAsObject from 'utils/functions/formatNamesAsObject';
 
 //#endregion
 
-const FieldsCompany = ({ control, errors, inside = false }) => {
+const FieldsCompany = ({ inside = false }) => {
     const COMPANY_NAME = useMemo(() => (inside ? formatNamesAsObject(COMPANY_FIELDS) : COMPANY_FIELDS), [
         inside,
         COMPANY_FIELDS
@@ -16,27 +16,9 @@ const FieldsCompany = ({ control, errors, inside = false }) => {
 
     return (
         <Fragment>
-            <FieldInput
-                errors={errors}
-                control={control}
-                icon='building'
-                name={COMPANY_NAME.NAME}
-                label={COMPANY_LABELS.NAME}
-            />
-            <FieldInput
-                errors={errors}
-                icon='briefcase'
-                control={control}
-                name={COMPANY_NAME.FANTASY_NAME}
-                label={COMPANY_LABELS.FANTASY_NAME}
-            />
-            <FieldInput
-                icon='passport'
-                errors={errors}
-                control={control}
-                name={COMPANY_NAME.CNPJ}
-                label={COMPANY_LABELS.CNPJ}
-            />
+            <FieldInput icon='building' name={COMPANY_NAME.NAME} label={COMPANY_LABELS.NAME} />
+            <FieldInput icon='briefcase' name={COMPANY_NAME.FANTASY_NAME} label={COMPANY_LABELS.FANTASY_NAME} />
+            <FieldInput icon='passport' name={COMPANY_NAME.CNPJ} label={COMPANY_LABELS.CNPJ} />
         </Fragment>
     );
 };

@@ -3,9 +3,10 @@
 import { Picker } from '@react-native-picker/picker';
 import COLOR from 'assets/styles/color';
 import FieldLabel from 'components/FieldLabel';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useController } from 'react-hook-form';
 import { View } from 'react-native';
+import useFormContext from 'storages/form/context';
 import FieldPickerIcon from './FieldPickerIcon';
 import useStyles from './styles';
 
@@ -13,8 +14,10 @@ import useStyles from './styles';
 
 const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
-const FieldPicker = ({ name, label, control, icon, iconColor, items = [], isRequired = true }) => {
+const FieldPicker = ({ name, label, icon, iconColor, items = [], isRequired = true }) => {
     const styles = useStyles();
+
+    const { control } = useFormContext();
     const { field } = useController({ name, control });
 
     return (

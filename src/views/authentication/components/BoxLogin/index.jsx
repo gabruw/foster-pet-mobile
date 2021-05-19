@@ -7,15 +7,17 @@ import Margin from 'components/Margin';
 import React from 'react';
 import { Image, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import FormLogin from '../../forms/FormLogin';
+import useAuthenticationContext from 'storages/authentication/context';
+import FormLogin from 'views/authentication/forms/FormLogin';
 import useStyles from './styles';
 
 //#endregion
 
 const { LIGHT } = COLOR.BLUE.PRIMARY;
 
-const BoxLogin = ({ setIsLogin }) => {
+const BoxLogin = () => {
     const styles = useStyles();
+    const { setIsLogin } = useAuthenticationContext();
 
     return (
         <Margin>

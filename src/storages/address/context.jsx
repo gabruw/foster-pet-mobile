@@ -1,15 +1,15 @@
 //#region Imports
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ADDRESS_FIELDS from 'utils/constants/fields/address';
+import CITY_FIELDS from 'utils/constants/fields/city';
+import STATE_FIELDS from 'utils/constants/fields/state';
 import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
 import isInvalid from 'utils/functions/isInvalid';
-import useRequestState from 'utils/hooks/useRequestState';
 import addressSchema from 'utils/validations/yup/schemas/address';
-import formatFetchCep from './format/formatFetchCep';
-import { getCep } from './services/send-data';
+import useAddressService from './service';
 
 //#endregion
 
@@ -17,21 +17,18 @@ const AddressContext = createContext();
 
 const initialState = {
     [ADDRESS_FIELDS.THIS]: null,
+    [CITY_FIELDS.OPTIONS]: null,
+    [STATE_FIELDS.OPTIONS]: null,
     ...CONTEXT_INITIAL_STATE
 };
 
 export const AddressContextProvider = ({ children, defaultValues }) => {
-    const { run, requestState } = useRequestState();
     const [state, setState] = useState({ ...initialState, ...defaultValues });
 
     const form = useForm({
         reValidateMode: 'onBlur',
         resolver: yupResolver(addressSchema)
     });
-
-    useEffect(() => {
-        setIsLoading(requestState.isLoading);
-    }, [requestState]);
 
     const setIsLoading = useCallback(
         (isLoading = false) =>
@@ -42,23 +39,34 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    const fetchCep = useCallback(
-        async (value) => {
-            const { data, errors } = await run(() => getCep(value));
-            setState((prevState) => ({ ...prevState, [ADDRESS_FIELDS.THIS]: formatFetchCep(data), error: errors }));
-        },
-        [run, setState, requestState]
+    const setAddress = useCallback((address = null) => setState((prevState) => ({ ...prevState, address })), [
+        setState
+    ]);
+
+    const setCityOptions = useCallback(
+        (cityOptions = null) => setState((prevState) => ({ ...prevState, cityOptions })),
+        [setState]
+    );
+
+    const setStateOptions = useCallback(
+        (stateOptions = null) => setState((prevState) => ({ ...prevState, stateOptions })),
+        [setState]
     );
 
     return (
-        <AddressContext.Provider value={{ state, form, setIsLoading, fetchCep }}>{children}</AddressContext.Provider>
+        <AddressContext.Provider value={{ state, form, setIsLoading, setAddress, setCityOptions, setStateOptions }}>
+            {children}
+        </AddressContext.Provider>
     );
 };
 
 const useAddressContext = () => {
-    const { state, form, setIsLoading, fetchCep } = useContext(AddressContext);
+    const context = useContext(AddressContext);
+    const service = useAddressService(context);
 
-    return { form, setIsLoading, fetchCep, ...state };
+    const { state, form, setIsLoading, setAddress, setCityOptions, setStateOptions } = context;
+
+    return { form, setIsLoading, setAddress, setCityOptions, setStateOptions, ...state, ...service };
 };
 
 export default useAddressContext;

@@ -5,14 +5,11 @@ import FieldsAuthentication from 'components-field/FieldsAuthentication';
 import Box from 'components/Box';
 import FAB from 'components/FAB';
 import SubTitleDivider from 'components/SubTitleDivider';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import useAuthenticationContext from 'storages/authentication/context';
-import useCompanyContext from 'storages/company/context';
-import usePersonContext from 'storages/person/context';
-import validateDefaultValues from 'utils/functions/validateDefaultValues';
-import useUserType from 'utils/hooks/useUserType';
+import useFormContext, { FormContextProvider } from 'storages/form/context';
+import useUserContext from 'storages/user/context';
 import ModuleFormRegister from './ModuleFormRegister';
 import useStyles from './styles';
 
@@ -20,34 +17,12 @@ import useStyles from './styles';
 
 const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
-const FormRegister = ({ setIsFormRegister }) => {
+const FormContent = () => {
     const styles = useStyles();
-    const { schema, values } = useUserType();
+    const { handleSubmit } = useFormContext();
 
-    const { isLoading: personLoading } = usePersonContext();
-    const { isLoading: companyLoading } = useCompanyContext();
-    const { authentication, setAuthentication } = useAuthenticationContext();
-
-    const [form, setForm] = useState(values.PERSON.value);
-    const actualSchema = useMemo(() => schema[form], [form]);
-
-    const {
-        control,
-        setValue,
-        clearErrors,
-        handleSubmit,
-        formState: { errors }
-    } = useForm({
-        reValidateMode: 'onBlur',
-        // resolver: yupResolver(actualSchema),
-        defaultValues: validateDefaultValues(authentication)
-    });
-
-    useEffect(() => {
-        if (errors) {
-            clearErrors();
-        }
-    }, [form]);
+    const { isLoading } = useUserContext();
+    const { setIsFormRegister, setAuthentication } = useAuthenticationContext();
 
     const onSubmit = useCallback(
         (data) => {
@@ -62,23 +37,33 @@ const FormRegister = ({ setIsFormRegister }) => {
         <View style={styles.container}>
             <Box>
                 <SubTitleDivider text='Autenticação' color={DARKEST} />
-                <FieldsAuthentication control={control} errors={errors} />
+                <FieldsAuthentication />
             </Box>
 
             <Box style={styles.box}>
-                <ModuleFormRegister {...{ form, setForm, control, errors, setValue }} />
+                <ModuleFormRegister />
             </Box>
 
             <FAB
-                style={styles.fab}
                 icon='arrow-right'
+                style={styles.fab}
+                isLoading={isLoading}
+                isDisabled={isLoading}
                 onPress={handleSubmit(onSubmit)}
-                isLoading={personLoading || companyLoading}
-                isDisabled={personLoading || companyLoading}
             >
                 Avançar
             </FAB>
         </View>
+    );
+};
+
+const FormRegister = () => {
+    const { schema } = useUserContext();
+
+    return (
+        <FormContextProvider schema={schema}>
+            <FormContent />
+        </FormContextProvider>
     );
 };
 
