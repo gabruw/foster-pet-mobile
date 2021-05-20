@@ -11,11 +11,6 @@ const useStyles = () =>
             flex: 1,
             ...ALIGN.CENTER
         },
-        logo: {
-            width: 80,
-            height: 100,
-            resizeMode: 'stretch'
-        },
         title: {
             fontSize: 40,
             color: '#FFFFFF',

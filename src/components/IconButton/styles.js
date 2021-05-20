@@ -6,12 +6,17 @@ import { StyleSheet } from 'react-native';
 
 const useStyles = () =>
     StyleSheet.create({
-        content: {
-            flex: 1
+        button: {
+            borderRadius: 25
         },
         container: {
-            marginTop: 15,
+            marginTop: 10,
+            marginLeft: 18,
             marginBottom: 5
+        },
+        icon: {
+            marginLeft: 2,
+            marginRight: 2
         }
     });
 

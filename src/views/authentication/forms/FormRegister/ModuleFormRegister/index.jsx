@@ -28,6 +28,7 @@ const ModuleFormRegister = () => {
         <Fragment>
             <SubTitleDivider text={text} color={DARKEST} />
             <StateButtonGroup get={form} set={setForm} values={options} />
+
             <Component inside />
         </Fragment>
     );

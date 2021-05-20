@@ -2,7 +2,7 @@
 
 import COLOR from 'assets/styles/color';
 import React from 'react';
-import { FAB as FloatActionButton } from 'react-native-elements';
+import { FAB } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import useStyles from './styles';
 
@@ -10,9 +10,10 @@ import useStyles from './styles';
 
 const { LIGHT } = COLOR.BLUE.SHADOW;
 
-const FAB = ({
+const FloatActionButton = ({
     icon,
     children,
+    size = 'small',
     isLoading = false,
     isDisabled = false,
     iconColor = '#FFFFFF',
@@ -22,20 +23,20 @@ const FAB = ({
     const styles = useStyles();
 
     return (
-        <FloatActionButton
+        <FAB
             iconRight
             upperCase
-            size='small'
+            size={size}
             title={children}
+            placement='right'
             loading={isLoading}
             color={backgroundColor}
             titleStyle={styles.title}
-            containerStyle={styles.container}
             disabled={isLoading || isDisabled}
-            icon={<Icon solid name={icon} color={iconColor} size={18} />}
+            icon={icon && <Icon solid name={icon} color={iconColor} size={18} />}
             {...rest}
         />
     );
 };
 
-export default FAB;
+export default FloatActionButton;

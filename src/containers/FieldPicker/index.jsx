@@ -24,7 +24,7 @@ const FieldPicker = ({ name, label, icon, iconColor, items = [], isRequired = tr
         <View style={styles.container}>
             <FieldLabel label={label} isRequired={isRequired} />
 
-            <View style={styles.pickerContainer}>
+            <View style={styles.content}>
                 <FieldPickerIcon icon={icon} iconColor={iconColor} />
 
                 <View style={styles.containerPicker}>

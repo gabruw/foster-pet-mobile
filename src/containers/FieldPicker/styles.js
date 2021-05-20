@@ -12,16 +12,14 @@ const useStyles = () =>
     StyleSheet.create({
         container: {
             marginTop: 5,
-            marginLeft: 10,
-            marginRight: 10,
             marginBottom: 5
         },
-        pickerContainer: {
+        content: {
             borderWidth: 2,
             borderRadius: 5,
-            flexDirection: 'row',
             borderColor: DARKEST,
             backgroundColor: '#FFFFFF',
+            width: '100%',
             ...ALIGN.BETWEEN
         },
         containerPicker: {

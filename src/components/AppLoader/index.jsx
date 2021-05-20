@@ -1,9 +1,9 @@
 //#region Imports
 
-import Logo from 'assets/images/logo.png';
+import Logo from 'components-svg/Logo';
 import GradientBackground from 'components/GradientBackground';
 import React from 'react';
-import { ActivityIndicator, Image, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import useStyles from './styles';
 
@@ -15,7 +15,7 @@ const AppLoader = () => {
     return (
         <GradientBackground>
             <View style={styles.container}>
-                <Image source={Logo} style={styles.logo} />
+                <Logo width={80} height={100} />
                 <Text style={styles.title}>Foster Pet</Text>
 
                 <ActivityIndicator size='large' color='#FFFFFF' />

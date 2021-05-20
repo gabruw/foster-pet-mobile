@@ -17,6 +17,12 @@ const useStyles = (invert, marginTop = 20, fontSize = 16, color = '#FFFFFF', bac
             width: '100%',
             marginTop: marginTop
         },
+        iconLeft: {
+            marginRight: 8
+        },
+        iconRight: {
+            marginLeft: 8
+        },
         solidButton: {
             backgroundColor: borderAndBackground
         },

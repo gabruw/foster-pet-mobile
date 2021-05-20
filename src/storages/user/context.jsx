@@ -54,6 +54,8 @@ const UserContextProviderContent = ({ children, defaultValues }) => {
         [setState]
     );
 
+    const setUser = useCallback((user) => setState((prevState) => ({ ...prevState, user })), [setState]);
+
     const setForm = useCallback((form = initialState.form) => setState((prevState) => ({ ...prevState, form })), [
         setState
     ]);
@@ -72,7 +74,7 @@ const UserContextProviderContent = ({ children, defaultValues }) => {
     );
 
     return (
-        <UserContext.Provider value={{ state, schema, setIsLoading, setForm, register }}>
+        <UserContext.Provider value={{ state, schema, setIsLoading, setUser, setForm, register }}>
             {children}
         </UserContext.Provider>
     );
@@ -87,9 +89,9 @@ export const UserContextProvider = ({ children, personDefaultValues, companyDefa
 );
 
 const useUserContext = () => {
-    const { state, schema, setIsLoading, setForm, register } = useContext(UserContext);
+    const { state, schema, setIsLoading, setUser, setForm, register } = useContext(UserContext);
 
-    return { schema, setIsLoading, setForm, register, ...state };
+    return { schema, setIsLoading, setUser, setForm, register, ...state };
 };
 
 export default useUserContext;

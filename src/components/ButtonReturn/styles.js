@@ -1,14 +1,19 @@
 //#region Imports
 
+import ALIGN from 'assets/styles/align';
 import { StyleSheet } from 'react-native';
 
 //#endregion
 
 const useStyles = () =>
     StyleSheet.create({
+        container: {
+            ...ALIGN.LEFT
+        },
         arrow: {
-            marginTop: 20,
-            marginLeft: 20
+            marginTop: 10,
+            marginLeft: 18,
+            marginBottom: 5
         }
     });
 

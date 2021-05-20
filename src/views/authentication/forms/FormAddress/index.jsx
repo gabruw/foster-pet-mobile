@@ -9,7 +9,7 @@ import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 import useAddressContext from 'storages/address/context';
 import useAuthenticationContext from 'storages/authentication/context';
-import { FormContextProvider } from 'storages/form/context';
+import useFormContext, { FormContextProvider } from 'storages/form/context';
 import useUserContext from 'storages/user/context';
 import ADDRESS_FIELDS from 'utils/constants/fields/address';
 import addressSchema from 'utils/validations/yup/schemas/address';
@@ -21,12 +21,11 @@ const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
 const FormContent = () => {
     const styles = useStyles();
+    const { setValue, handleSubmit } = useFormContext();
 
     const { authentication } = useAuthenticationContext();
     const { register, isLoading: userIsLoading } = useUserContext();
-    const { address, form, isLoading: addressIsLoading } = useAddressContext();
-
-    const { setValue, handleSubmit } = form;
+    const { address, isLoading: addressIsLoading } = useAddressContext();
 
     useEffect(() => {
         if (address) {
@@ -47,21 +46,19 @@ const FormContent = () => {
 
     return (
         <View style={styles.content}>
-            <Box paddingBottom={20}>
+            <Box paddingBottom={18}>
                 <SubTitleDivider text='Endereço' color={DARKEST} />
                 <FieldsAddress />
-
-                <View style={styles.button}>
-                    <Button
-                        marginTop={5}
-                        onPress={handleSubmit(onSubmit)}
-                        loading={userIsLoading || addressIsLoading}
-                        disabled={userIsLoading || addressIsLoading}
-                    >
-                        Concluir
-                    </Button>
-                </View>
             </Box>
+
+            <Button
+                marginTop={20}
+                onPress={handleSubmit(onSubmit)}
+                isLoading={userIsLoading || addressIsLoading}
+                isDisabled={userIsLoading || addressIsLoading}
+            >
+                Concluir
+            </Button>
         </View>
     );
 };

@@ -17,7 +17,7 @@ const CityField = () => {
     useEffect(() => {
         const stateId = getValues(STATE_FIELDS.NAME);
         // fetchCityOptions(stateId);
-    }, [fetchOptions]);
+    }, []);
 
     return <FieldPicker icon='city' name={CITY_FIELDS.THIS} label={CITY_LABELS.NAME} />;
 };

@@ -13,11 +13,6 @@ const useStyles = () =>
             marginBottom: 5,
             alignItems: 'center'
         },
-        logo: {
-            width: 80,
-            height: 100,
-            resizeMode: 'stretch'
-        },
         title: {
             fontSize: 40,
             color: '#FFFFFF',

@@ -12,7 +12,7 @@ export const FormContextProvider = ({ children, schema, formProperties, defaultV
     const form = useForm({
         reValidateMode: 'onBlur',
         defaultValues: defaultValues,
-        resolver: yupResolver(schema),
+        // resolver: yupResolver(schema),
         ...formProperties
     });
 

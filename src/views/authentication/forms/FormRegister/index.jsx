@@ -3,15 +3,16 @@
 import COLOR from 'assets/styles/color';
 import FieldsAuthentication from 'components-field/FieldsAuthentication';
 import Box from 'components/Box';
-import FAB from 'components/FAB';
+import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import useAuthenticationContext from 'storages/authentication/context';
 import useFormContext, { FormContextProvider } from 'storages/form/context';
 import useUserContext from 'storages/user/context';
 import ModuleFormRegister from './ModuleFormRegister';
 import useStyles from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 //#endregion
 
@@ -44,15 +45,9 @@ const FormContent = () => {
                 <ModuleFormRegister />
             </Box>
 
-            <FAB
-                icon='arrow-right'
-                style={styles.fab}
-                isLoading={isLoading}
-                isDisabled={isLoading}
-                onPress={handleSubmit(onSubmit)}
-            >
+            <Button iconRight icon='arrow-right' isLoading={isLoading} onPress={handleSubmit(onSubmit)}>
                 Avançar
-            </FAB>
+            </Button>
         </View>
     );
 };

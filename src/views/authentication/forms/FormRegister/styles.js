@@ -11,10 +11,6 @@ const useStyles = () =>
         },
         box: {
             marginTop: 20
-        },
-        fab: {
-            left: 100,
-            bottom: 15
         }
     });
 

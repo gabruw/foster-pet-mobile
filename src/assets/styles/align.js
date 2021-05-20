@@ -1,6 +1,7 @@
 const FLEX_CENTER = {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexDirection: 'row'
 };
 
 const ALIGN = {
@@ -18,6 +19,7 @@ const ALIGN = {
     },
     BETWEEN: {
         display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'space-between'
     },
     COLUMN: {

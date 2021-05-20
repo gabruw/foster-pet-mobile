@@ -13,8 +13,7 @@ const useStyles = () =>
             marginRight: 8,
             ...ALIGN.CENTER,
             overflow: 'visible',
-            alignItems: 'center',
-            flexDirection: 'row'
+            alignItems: 'center'
         }
     });
 

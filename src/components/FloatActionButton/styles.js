@@ -6,9 +6,6 @@ import { StyleSheet } from 'react-native';
 
 const useStyles = () =>
     StyleSheet.create({
-        container: {
-            position: 'absolute'
-        },
         title: {
             fontFamily: 'Geomanist-Medium',
             fontSize: 14

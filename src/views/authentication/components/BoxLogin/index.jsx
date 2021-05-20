@@ -1,11 +1,11 @@
 //#region Imports
 
-import Logo from 'assets/images/logo.png';
 import COLOR from 'assets/styles/color';
+import Logo from 'components-svg/Logo';
 import Button from 'components/Button';
 import Margin from 'components/Margin';
 import React from 'react';
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import useAuthenticationContext from 'storages/authentication/context';
 import FormLogin from 'views/authentication/forms/FormLogin';
@@ -22,7 +22,7 @@ const BoxLogin = () => {
     return (
         <Margin>
             <View style={styles.top}>
-                <Image source={Logo} style={styles.logo} />
+                <Logo width={80} height={100} />
                 <Text style={styles.title}>Foster Pet</Text>
             </View>
 
