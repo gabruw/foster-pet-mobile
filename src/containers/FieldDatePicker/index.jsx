@@ -8,7 +8,7 @@ import useFormContext from 'storages/form/context';
 
 //#endregion
 
-const FieldDatePicker = ({ name, label, format = 'DD-MM-YYYY', display = 'default' }) => {
+const FieldDatePicker = ({ name, label, format = 'DD-MM-YYYY', display = 'default', ...rest }) => {
     const [date, setDate] = useState(new Date());
     const [visible, setVisible] = useState(false);
 
@@ -27,6 +27,7 @@ const FieldDatePicker = ({ name, label, format = 'DD-MM-YYYY', display = 'defaul
                 control={control}
                 icon='calendar-alt'
                 onTouchStart={() => setVisible(true)}
+                {...rest}
             />
 
             {visible && (

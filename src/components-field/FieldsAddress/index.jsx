@@ -30,6 +30,7 @@ const FieldsAddress = () => {
             />
             <FieldInput
                 icon='map'
+                isRequired={false}
                 isLoading={isLoading}
                 name={ADDRESS_FIELDS.COMPLEMENT}
                 label={ADDRESS_LABELS.COMPLEMENT}

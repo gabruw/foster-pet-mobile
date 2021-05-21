@@ -3,6 +3,7 @@
 import { useCallback, useEffect } from 'react';
 import useRequestState from 'utils/hooks/useRequestState';
 import formatFetchCep from './format/formatFetchCep';
+import { getCep, getCityOptions, getStateOptions } from './services/send-data';
 
 //#endregion
 
@@ -10,13 +11,14 @@ const useAddressService = ({ setIsLoading, setAddress, setCityOptions, setStateO
     const { run, requestState } = useRequestState();
 
     useEffect(() => {
+        console.log('requestState', requestState);
         setIsLoading(requestState.isLoading);
     }, [requestState]);
 
     const fetchCep = useCallback(
         async (value) => {
             const { data, errors } = await run(() => getCep(value));
-
+            console.log('data', data);
             const formated = formatFetchCep(data);
             setAddress(formated, errors);
         },

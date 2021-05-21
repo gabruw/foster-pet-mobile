@@ -1,67 +1,60 @@
 //#region Imports
 
-import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
-import MISC_ERRORS from 'utils/constants/errors/misc';
 import sleep from 'utils/functions/sleep';
-import { ROUTE_NAMES } from 'routes/routes';
+import useRequestError from './useRequestError';
 
 //#endregion
 
 const initalState = {
     data: null,
     errors: null,
-    success: false,
     isLoading: false
 };
 
+const initialOptions = {
+    sleep: false,
+    autoClear: false,
+    sleepTimeout: null
+};
+
 const useRequestState = () => {
-    const { navigate } = useNavigation();
+    const { getError } = useRequestError();
     const [requestState, setRequestState] = useState(initalState);
 
     const clear = useCallback((timeout = 100) => setTimeout(() => setRequestState(initalState), timeout), []);
 
-    const run = useCallback(
-        async (callback, options) => {
-            setRequestState({ ...initalState, isLoading: true, success: false });
+    const clearRequestState = useCallback((options) => options.autoClear && clear(5000), []);
+    const waitResults = useCallback((options) => options.sleep && sleep(options.sleepTimeout || 3000), []);
 
-            if (options && options.sleep) {
-                await sleep(options.sleepTimeout || 3000);
-            }
+    const run = useCallback(
+        async (callback, options = initialOptions) => {
+            setRequestState({ ...initalState, isLoading: true });
+            waitResults(options);
 
             let responseObj = null;
             try {
                 const { data } = await callback();
 
-                const values = data.data ? data.data : data;
-                const errors = data.errors ? data.errors : initalState.errors;
-
                 responseObj = {
                     ...initalState,
-                    success: true,
-                    data: values,
-                    errors: errors
+                    data: data.data || data,
+                    errors: data.errors || initalState.errors
                 };
             } catch (error) {
-                const responseError = error && error.response;
-                if (responseError && responseError.status === 401) {
-                    navigate(ROUTE_NAMES.AUTHENTICATION);
-                }
-
-                if (options && options.autoClear) {
-                    clear(5000);
-                }
+                const fltError = getError(error);
+                clearRequestState(options);
 
                 responseObj = {
                     ...initalState,
-                    errors: responseError && responseError.data ? responseError.data.errors : MISC_ERRORS.UNKNOW
+                    errors: fltError
                 };
             }
 
             setRequestState(responseObj);
             return responseObj;
         },
-        [history, clear]
+        [clear]
     );
 
     return {

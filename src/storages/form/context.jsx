@@ -10,9 +10,10 @@ const FormContext = createContext();
 
 export const FormContextProvider = ({ children, schema, formProperties, defaultValues = {} }) => {
     const form = useForm({
+        shouldUnregister: true,
         reValidateMode: 'onBlur',
         defaultValues: defaultValues,
-        // resolver: yupResolver(schema),
+        resolver: yupResolver(schema),
         ...formProperties
     });
 

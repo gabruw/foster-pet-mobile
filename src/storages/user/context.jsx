@@ -38,7 +38,7 @@ const UserContextProviderContent = ({ children, defaultValues }) => {
                 PERSON: personObjectSchema.concat(authenticationSchema),
                 COMPANY: companyObjectSchema.concat(authenticationSchema)
             }[state[USER_FIELDS.FORM]]),
-        [authenticationSchema, personObjectSchema, companyObjectSchema]
+        [state]
     );
 
     useEffect(() => {

@@ -63,6 +63,7 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
 const useAddressContext = () => {
     const context = useContext(AddressContext);
     const service = useAddressService(context);
+    console.log('service', service);
 
     const { state, form, setIsLoading, setAddress, setCityOptions, setStateOptions } = context;
 

@@ -12,7 +12,6 @@ import useFormContext, { FormContextProvider } from 'storages/form/context';
 import useUserContext from 'storages/user/context';
 import ModuleFormRegister from './ModuleFormRegister';
 import useStyles from './styles';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 //#endregion
 
