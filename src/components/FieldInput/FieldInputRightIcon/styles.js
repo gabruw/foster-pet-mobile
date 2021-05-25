@@ -11,10 +11,6 @@ const useStyles = () =>
     StyleSheet.create({
         icon: {
             color: DARKEST
-        },
-        right: {
-            marginLeft: 5,
-            marginRight: 10
         }
     });
 
