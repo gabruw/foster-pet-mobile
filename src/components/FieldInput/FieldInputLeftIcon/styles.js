@@ -10,9 +10,8 @@ const { DARKEST } = COLOR.PURPLE.PRIMARY;
 const useStyles = () =>
     StyleSheet.create({
         left: {
-            marginLeft: 10,
-            marginRight: 5,
-            color: DARKEST
+            color: DARKEST,
+            paddingLeft: 8
         }
     });
 

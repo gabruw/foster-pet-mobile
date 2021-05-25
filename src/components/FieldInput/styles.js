@@ -13,7 +13,8 @@ const useStyles = () =>
         container: {
             marginTop: 5,
             paddingLeft: 0,
-            paddingRight: 0
+            paddingRight: 0,
+            width: '100%'
         },
         input: {
             height: 55,
