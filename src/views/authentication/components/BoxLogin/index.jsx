@@ -20,7 +20,7 @@ const BoxLogin = () => {
     const { setIsLogin } = useAuthenticationContext();
 
     return (
-        <Margin>
+        <Margin paddingTop={5}>
             <View style={styles.top}>
                 <Logo width={80} height={100} />
                 <Text style={styles.title}>Foster Pet</Text>
