@@ -5,14 +5,15 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SystemContextProvider } from 'storages/system/context';
 import Router from './routes';
-
+import AnimalCard from './views/animals/animals-list/animals-card/index';
 //#endregion
 
 const App = () => (
     <SafeAreaProvider>
         <SystemContextProvider>
             <SplashLoader>
-                <Router />
+                {/* <Router /> */}
+                 <AnimalCard/>
             </SplashLoader>
         </SystemContextProvider>
     </SafeAreaProvider>
