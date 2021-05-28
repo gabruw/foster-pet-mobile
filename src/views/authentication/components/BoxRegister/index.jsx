@@ -18,7 +18,7 @@ const BoxRegister = () => {
     return (
         <ScrollView>
             <ButtonReturn onPress={() => goBack()} />
-            <Margin paddingTop={0}>{isFormRegister ? <FormRegister /> : <FormAddress />}</Margin>
+            <Margin paddingTop={0}>{!isFormRegister ? <FormRegister /> : <FormAddress />}</Margin>
         </ScrollView>
     );
 };

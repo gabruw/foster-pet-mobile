@@ -12,8 +12,8 @@ const App = () => (
     <SafeAreaProvider>
         <SystemContextProvider>
             <SplashLoader>
-                {/* <Router /> */}
-                 <AnimalCard/>
+                <Router />
+                {/* <AnimalCard/> */}
             </SplashLoader>
         </SystemContextProvider>
     </SafeAreaProvider>
