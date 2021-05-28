@@ -3,7 +3,7 @@
   "diffEditor.ignoreTrimWhitespace": true,
   "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
-  "editor.autoIndent": true,
+  "editor.autoIndent": "full",
   "editor.codeActionsOnSave": {
     "source.organizeImports": false
   },

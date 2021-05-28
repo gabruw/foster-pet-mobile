@@ -9,6 +9,7 @@ import AnimalCard from './views/animals/animals-list/animals-card/index';
 import AnimalList from './views/animals/animals-list/list-animals-card/index';
 
 
+
 const App = () => (
     <SafeAreaProvider>
         <SystemContextProvider>
