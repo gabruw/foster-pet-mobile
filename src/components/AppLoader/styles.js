@@ -9,7 +9,8 @@ const useStyles = () =>
     StyleSheet.create({
         container: {
             flex: 1,
-            ...ALIGN.CENTER
+            ...ALIGN.CENTER,
+            flexDirection: 'column'
         },
         title: {
             fontSize: 40,
