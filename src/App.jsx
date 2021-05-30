@@ -8,6 +8,7 @@ import Router from './routes';
 
 //#endregion
 
+
 const App = () => (
     <SafeAreaProvider>
         <SystemContextProvider>
