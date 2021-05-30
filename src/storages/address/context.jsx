@@ -16,6 +16,7 @@ import useAddressService from './service';
 const AddressContext = createContext();
 
 const initialState = {
+    [STATE_FIELDS.THIS]: null,
     [ADDRESS_FIELDS.THIS]: null,
     [CITY_FIELDS.OPTIONS]: null,
     [STATE_FIELDS.OPTIONS]: null,
@@ -24,11 +25,6 @@ const initialState = {
 
 export const AddressContextProvider = ({ children, defaultValues }) => {
     const [state, setState] = useState({ ...initialState, ...defaultValues });
-
-    const form = useForm({
-        reValidateMode: 'onBlur',
-        resolver: yupResolver(addressSchema)
-    });
 
     const setIsLoading = useCallback(
         (isLoading = false) =>
@@ -43,6 +39,11 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
         setState
     ]);
 
+    const setSelectedState = useCallback(
+        (value = null) => setState((prevState) => ({ ...prevState, [STATE_FIELDS.THIS]: value })),
+        [setState]
+    );
+
     const setCityOptions = useCallback(
         (cityOptions = null) => setState((prevState) => ({ ...prevState, cityOptions })),
         [setState]
@@ -54,7 +55,9 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
     );
 
     return (
-        <AddressContext.Provider value={{ state, form, setIsLoading, setAddress, setCityOptions, setStateOptions }}>
+        <AddressContext.Provider
+            value={{ state, setIsLoading, setAddress, setSelectedState, setCityOptions, setStateOptions }}
+        >
             {children}
         </AddressContext.Provider>
     );
@@ -63,11 +66,10 @@ export const AddressContextProvider = ({ children, defaultValues }) => {
 const useAddressContext = () => {
     const context = useContext(AddressContext);
     const service = useAddressService(context);
-    console.log('service', service);
 
-    const { state, form, setIsLoading, setAddress, setCityOptions, setStateOptions } = context;
+    const { state, setIsLoading, setAddress, setSelectedState, setCityOptions, setStateOptions } = context;
 
-    return { form, setIsLoading, setAddress, setCityOptions, setStateOptions, ...state, ...service };
+    return { setIsLoading, setAddress, setSelectedState, setCityOptions, setStateOptions, ...state, ...service };
 };
 
 export default useAddressContext;

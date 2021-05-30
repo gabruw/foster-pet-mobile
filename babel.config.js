@@ -14,6 +14,17 @@ module.exports = function (api) {
                 {
                     root: ['./src']
                 }
+            ],
+            [
+                'module:react-native-dotenv',
+                {
+                    safe: false,
+                    path: '.env',
+                    blacklist: null,
+                    whitelist: null,
+                    moduleName: '@env',
+                    allowUndefined: true
+                }
             ]
         ],
         presets: ['babel-preset-expo', 'module:metro-react-native-babel-preset']

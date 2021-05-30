@@ -11,35 +11,25 @@ const useAddressService = ({ setIsLoading, setAddress, setCityOptions, setStateO
     const { run, requestState } = useRequestState();
 
     useEffect(() => {
-        console.log('requestState', requestState);
         setIsLoading(requestState.isLoading);
     }, [requestState]);
 
-    const fetchCep = useCallback(
-        async (value) => {
-            const { data, errors } = await run(() => getCep(value));
-            console.log('data', data);
-            const formated = formatFetchCep(data);
-            setAddress(formated, errors);
-        },
-        [run, setAddress]
-    );
+    const fetchCep = useCallback(async (value) => {
+        const { data, errors } = await run(() => getCep(value));
 
-    const fetchCityOptions = useCallback(
-        async (stateId) => {
-            const { data, errors } = await run(() => getCityOptions(stateId));
-            setCityOptions(data, errors);
-        },
-        [run, setCityOptions]
-    );
+        const formated = formatFetchCep(data);
+        setAddress(formated, errors);
+    }, []);
 
-    const fetchStateOptions = useCallback(
-        async (stateId) => {
-            const { data, errors } = await run(() => getStateOptions(stateId));
-            setStateOptions(data, errors);
-        },
-        [run, setStateOptions]
-    );
+    const fetchCityOptions = useCallback(async (stateId) => {
+        const { data, errors } = await run(() => getCityOptions(stateId));
+        setCityOptions(data, errors);
+    }, []);
+
+    const fetchStateOptions = useCallback(async () => {
+        const { data, errors } = await run(() => getStateOptions());
+        setStateOptions(data, errors);
+    }, []);
 
     return {
         fetchCep,

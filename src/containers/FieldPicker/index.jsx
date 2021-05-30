@@ -3,7 +3,7 @@
 import { Picker } from '@react-native-picker/picker';
 import COLOR from 'assets/styles/color';
 import FieldLabel from 'components/FieldLabel';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useController } from 'react-hook-form';
 import { View } from 'react-native';
 import useFormContext from 'storages/form/context';
@@ -14,11 +14,19 @@ import useStyles from './styles';
 
 const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
-const FieldPicker = ({ name, label, icon, iconColor, items = [], isRequired = true }) => {
+const FieldPicker = ({ name, label, icon, iconColor, onChange, items = [], isRequired = true }) => {
     const styles = useStyles();
 
     const { control } = useFormContext();
     const { field } = useController({ name, control });
+
+    const handleChange = useCallback(
+        (value) => {
+            field.onChange(value);
+            onChange && onChange(value);
+        },
+        [field, onChange]
+    );
 
     return (
         <View style={styles.container}>
@@ -32,12 +40,11 @@ const FieldPicker = ({ name, label, icon, iconColor, items = [], isRequired = tr
                         mode='dialog'
                         style={styles.picker}
                         selectedValue={field.value}
-                        onValueChange={(itemValue) => field.onChange(itemValue)}
+                        onValueChange={(itemValue) => handleChange(itemValue)}
                     >
                         <Picker.Item label={label} value={undefined} color={DARKEST} />
-                        {items.map((item) => (
-                            <Picker.Item label={item.text} value={item.value} color={DARKEST} />
-                        ))}
+                        {items &&
+                            items.map((item) => <Picker.Item label={item.text} value={item.value} color={DARKEST} />)}
                     </Picker>
                 </View>
             </View>

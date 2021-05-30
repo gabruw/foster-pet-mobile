@@ -20,13 +20,16 @@ const useRequestError = () => {
     const getError = useCallback(
         (error) => {
             const responseError = error && error.response;
+            if (responseError) {
+                const action = getAction[responseError.status];
+                if (action) {
+                    return action();
+                }
 
-            const action = getAction[responseError.status]();
-            if (action) {
-                return action();
+                return responseError.data && responseError.data.errors;
             }
 
-            return responseError && responseError.data ? responseError.data.errors : MISC_ERRORS.UNKNOW;
+            return MISC_ERRORS.UNKNOW;
         },
         [navigate, getAction]
     );

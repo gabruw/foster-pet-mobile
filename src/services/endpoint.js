@@ -1,3 +1,10 @@
+//#region Imports
+
+import { COUNTRY } from '@env';
+import buildQueryParams from 'utils/functions/buildQueryParams';
+
+//#endregion
+
 const ENDPOINT = {
     BASE: 'http://localhost:8756',
     SECURITY: {
@@ -18,10 +25,10 @@ const ENDPOINT = {
         CEP: (cep) => `https://viacep.com.br/ws/${cep}/json/`
     },
     CITY: {
-        OPTIONS: (cityId) => `city/options?${buildQueryParams({ cityId })}`
+        OPTIONS: (stateId) => `city/options?${buildQueryParams({ stateId })}`
     },
     STATE: {
-        OPTIONS: (countryId) => `state/options?${buildQueryParams({ countryId })}`
+        OPTIONS: (countryId = COUNTRY) => `state/options?${buildQueryParams({ countryId })}`
     }
 };
 

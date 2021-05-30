@@ -6,5 +6,5 @@ import ENDPOINT from 'services/endpoint';
 //#endregion
 
 export const getCep = (cep) => api.get(ENDPOINT.ADDRESS.CEP(cep));
-export const getCityOptions = (cityId) => api.get(ENDPOINT.CITY.OPTIONS(cityId));
-export const getStateOptions = (countryId) => api.get(ENDPOINT.STATE.OPTIONS(countryId));
+export const getCityOptions = (stateId) => api.get(ENDPOINT.CITY.OPTIONS(stateId));
+export const getStateOptions = () => api.get(ENDPOINT.STATE.OPTIONS());
