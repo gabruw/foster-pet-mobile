@@ -1,7 +1,7 @@
 //#region Imports
 
 import DateTimePicker from '@react-native-community/datetimepicker';
-import FieldInput from 'components/FieldInput';
+import FieldInput from 'containers/FieldInput';
 import moment from 'moment';
 import React, { Fragment, useState } from 'react';
 import useFormContext from 'storages/form/context';

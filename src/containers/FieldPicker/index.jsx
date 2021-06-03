@@ -5,7 +5,7 @@ import COLOR from 'assets/styles/color';
 import FieldLabel from 'components/FieldLabel';
 import React, { useCallback } from 'react';
 import { useController } from 'react-hook-form';
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import useFormContext from 'storages/form/context';
 import FieldPickerIcon from './FieldPickerIcon';
 import useStyles from './styles';
@@ -14,7 +14,18 @@ import useStyles from './styles';
 
 const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
-const FieldPicker = ({ name, label, icon, iconColor, onChange, items = [], isRequired = true }) => {
+const FieldPicker = ({
+    name,
+    icon,
+    label,
+    onChange,
+    iconColor,
+    items = [],
+    isRequired = true,
+    isLoading = false,
+    isDisabled = false,
+    ...rest
+}) => {
     const styles = useStyles();
 
     const { control } = useFormContext();
@@ -33,19 +44,23 @@ const FieldPicker = ({ name, label, icon, iconColor, onChange, items = [], isReq
             <FieldLabel label={label} isRequired={isRequired} />
 
             <View style={styles.content}>
-                <FieldPickerIcon icon={icon} iconColor={iconColor} />
-
                 <View style={styles.containerPicker}>
+                    <FieldPickerIcon icon={icon} iconColor={iconColor} />
+
                     <Picker
                         mode='dialog'
                         style={styles.picker}
                         selectedValue={field.value}
+                        enabled={!(isDisabled || isLoading)}
                         onValueChange={(itemValue) => handleChange(itemValue)}
+                        {...rest}
                     >
                         <Picker.Item label={label} value={undefined} color={DARKEST} />
                         {items &&
                             items.map((item) => <Picker.Item label={item.text} value={item.value} color={DARKEST} />)}
                     </Picker>
+
+                    {isLoading && <ActivityIndicator size='small' color={DARKEST} style={styles.loader} />}
                 </View>
             </View>
         </View>

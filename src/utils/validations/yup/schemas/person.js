@@ -7,8 +7,8 @@ import yup from '../yup';
 //#endregion
 
 const fields = {
-    [PERSON_FIELDS.CELL]: yup.string().required().min(9).max(9).label(PERSON_LABELS.CELL),
-    [PERSON_FIELDS.CPF]: yup.string().required().min(11).max(11).label(PERSON_LABELS.CPF),
+    [PERSON_FIELDS.CPF]: yup.string().required().min(14).max(14).label(PERSON_LABELS.CPF),
+    [PERSON_FIELDS.CELL]: yup.string().required().min(16).max(16).label(PERSON_LABELS.CELL),
     [PERSON_FIELDS.NAME]: yup.string().required().min(1).max(200).label(PERSON_LABELS.NAME)
 };
 

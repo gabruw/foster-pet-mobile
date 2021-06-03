@@ -1,6 +1,6 @@
 //#region Imports
 
-import FieldInput from 'components/FieldInput';
+import FieldInput from 'containers/FieldInput';
 import React, { Fragment } from 'react';
 import AUTHENTICATION_FIELDS from 'utils/constants/fields/authentication';
 import AUTHENTICATION_LABELS from 'utils/constants/labels/authentication';

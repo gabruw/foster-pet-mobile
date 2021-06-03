@@ -8,12 +8,8 @@ import ALIGN from 'assets/styles/align';
 const useStyles = () =>
     StyleSheet.create({
         icon: {
-            width: 50,
-            marginLeft: 10,
-            marginRight: 8,
-            ...ALIGN.CENTER,
-            overflow: 'visible',
-            alignItems: 'center'
+            marginLeft: 8,
+            ...ALIGN.LEFT
         }
     });
 

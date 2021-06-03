@@ -1,6 +1,6 @@
 //#region Imports
 
-import FieldInput from 'components/FieldInput';
+import FieldInput from 'containers/FieldInput';
 import React, { Fragment } from 'react';
 import useAddressContext from 'storages/address/context';
 import ADDRESS_FIELDS from 'utils/constants/fields/address';

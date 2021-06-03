@@ -7,7 +7,7 @@ import yup from '../yup';
 //#endregion
 
 const fields = {
-    [COMPANY_FIELDS.CNPJ]: yup.string().required().min(14).max(14).label(COMPANY_LABELS.CNPJ),
+    [COMPANY_FIELDS.CNPJ]: yup.string().required().min(18).max(18).label(COMPANY_LABELS.CNPJ),
     [COMPANY_FIELDS.NAME]: yup.string().required().min(1).max(200).label(COMPANY_LABELS.NAME),
     [COMPANY_FIELDS.FANTASY_NAME]: yup.string().required().min(1).max(200).label(COMPANY_LABELS.FANTASY_NAME)
 };

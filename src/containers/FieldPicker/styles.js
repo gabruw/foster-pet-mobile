@@ -2,7 +2,7 @@
 
 import ALIGN from 'assets/styles/align';
 import COLOR from 'assets/styles/color';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 //#endregion
 
@@ -15,25 +15,30 @@ const useStyles = () =>
             marginBottom: 5
         },
         content: {
+            width: '100%',
             borderWidth: 2,
             borderRadius: 5,
             borderColor: DARKEST,
             backgroundColor: '#FFFFFF',
-            width: '100%',
             ...ALIGN.BETWEEN
         },
         containerPicker: {
+            width: '100%',
             borderRadius: 4,
-            width: Dimensions.get('window').width - 125,
-            ...ALIGN.RIGHT
+            ...ALIGN.CENTER
         },
         picker: {
             height: 50,
-            fontSize: 16,
+            fontSize: 18,
             width: '100%',
             borderColor: 'transparent',
             backgroundColor: '#FFFFFF',
-            fontFamily: 'Geomanist-Medium'
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+        },
+        loader: {
+            marginLeft: 8,
+            marginRight: 8,
+            ...ALIGN.RIGHT
         }
     });
 

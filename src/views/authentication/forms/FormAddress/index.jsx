@@ -39,7 +39,8 @@ const FormContent = () => {
     const onSubmit = useCallback(
         (data) => {
             data = { ...data, authentication };
-            register(data);
+            console.log('data', data);
+            // register(data);
         },
         [authentication, register]
     );

@@ -62,12 +62,13 @@ const UserContextProviderContent = ({ children, defaultValues }) => {
 
     const register = useCallback(
         async (form) => {
-            if (form[PERSON_FIELDS.THIS]) {
-                return personRegister(form);
-            }
-
-            if (form[COMPANY_FIELDS.THIS]) {
-                return companyRegister(form);
+            switch (state[USER_FIELDS.FORM]) {
+                case state[USER_FIELDS.VALUES.PERSON].value:
+                    return personRegister(form);
+                case state[USER_FIELDS.VALUES.COMPANY].value:
+                    return companyRegister(form);
+                default:
+                    break;
             }
         },
         [personRegister, companyRegister]

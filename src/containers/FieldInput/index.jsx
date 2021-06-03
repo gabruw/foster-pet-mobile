@@ -72,12 +72,12 @@ const FieldInput = ({
         onFocus && onFocus();
     }, [onFocus]);
 
-    const inputStyles = useMemo(
+    const inputContainerStyles = useMemo(
         () =>
             clsx({
-                [styles.input]: true,
-                [styles.inputOnBlur]: !isFocused,
-                [styles.inputOnFocus]: isFocused
+                [styles.inputContainer]: true,
+                [styles.inputContainerOnBlur]: !isFocused,
+                [styles.inputContainerOnFocus]: isFocused
             }),
         [styles, isFocused]
     );
@@ -87,14 +87,15 @@ const FieldInput = ({
             ref={inputRef}
             value={field.value}
             errorMessage={error}
+            inputStyle={styles.input}
             errorStyle={styles.error}
             secureTextEntry={visible}
             onBlur={() => handleBlur()}
             onFocus={() => handleFocus()}
             containerStyle={styles.container}
-            inputContainerStyle={inputStyles}
             disabled={isDisabled || isLoading}
             placeholder={placeholder || label}
+            inputContainerStyle={inputContainerStyles}
             onChangeText={(text) => handleChange(text)}
             leftIcon={<FieldInputLeftIcon icon={icon} isIconSolid={isIconSolid} />}
             label={<FieldLabel label={label} labelColor={labelColor} isRequired={isRequired} />}

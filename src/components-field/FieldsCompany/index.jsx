@@ -1,6 +1,6 @@
 //#region Imports
 
-import FieldInput from 'components/FieldInput';
+import FieldInput from 'containers/FieldInput';
 import React, { Fragment, useMemo } from 'react';
 import COMPANY_FIELDS from 'utils/constants/fields/company';
 import COMPANY_LABELS from 'utils/constants/labels/company';

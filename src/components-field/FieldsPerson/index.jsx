@@ -1,6 +1,6 @@
 //#region Imports
 
-import FieldInput from 'components/FieldInput';
+import FieldInput from 'containers/FieldInput';
 import FieldDatePicker from 'containers/FieldDatePicker';
 import React, { Fragment, useMemo } from 'react';
 import PERSON_FIELDS from 'utils/constants/fields/person';

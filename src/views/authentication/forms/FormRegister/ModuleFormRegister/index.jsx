@@ -6,7 +6,6 @@ import SubTitleDivider from 'components/SubTitleDivider';
 import React, { Fragment, useEffect, useMemo } from 'react';
 import useFormContext from 'storages/form/context';
 import useUserContext from 'storages/user/context';
-import { USER_TYPE_FORMS } from 'utils/constants/types/user-type';
 
 //#endregion
 

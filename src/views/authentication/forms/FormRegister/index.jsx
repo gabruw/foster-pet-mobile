@@ -26,7 +26,6 @@ const FormContent = () => {
 
     const onSubmit = useCallback(
         (data) => {
-            console.log('data', data);
             setAuthentication(data);
             setIsFormRegister(false);
         },
