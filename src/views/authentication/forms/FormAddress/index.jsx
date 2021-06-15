@@ -36,14 +36,7 @@ const FormContent = () => {
         }
     }, [address]);
 
-    const onSubmit = useCallback(
-        (data) => {
-            data = { ...data, authentication };
-            console.log('data', data);
-            // register(data);
-        },
-        [authentication, register]
-    );
+    const onSubmit = useCallback((data) => register(authentication, data), [authentication, register]);
 
     return (
         <View style={styles.content}>

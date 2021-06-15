@@ -3,8 +3,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import useCompanyContext, { CompanyContextProvider } from 'storages/company/context';
 import usePersonContext, { PersonContextProvider } from 'storages/person/context';
-import COMPANY_FIELDS from 'utils/constants/fields/company';
-import PERSON_FIELDS from 'utils/constants/fields/person';
 import USER_FIELDS from 'utils/constants/fields/user';
 import CONTEXT_INITIAL_STATE from 'utils/constants/types/context-initial-state';
 import { USER_TYPE_FIELDS, USER_TYPE_OPTIONS, USER_TYPE_VALUES } from 'utils/constants/types/user-type';
@@ -41,6 +39,14 @@ const UserContextProviderContent = ({ children, defaultValues }) => {
         [state]
     );
 
+    const dispatch = useMemo(
+        () => ({
+            PERSON: { register: (form) => personRegister(form) },
+            COMPANY: { register: (form) => companyRegister(form) }
+        }),
+        []
+    );
+
     useEffect(() => {
         setIsLoading(personLoading || companyLoading);
     }, [personLoading, companyLoading]);
@@ -61,15 +67,14 @@ const UserContextProviderContent = ({ children, defaultValues }) => {
     ]);
 
     const register = useCallback(
-        async (form) => {
-            switch (state[USER_FIELDS.FORM]) {
-                case state[USER_FIELDS.VALUES.PERSON].value:
-                    return personRegister(form);
-                case state[USER_FIELDS.VALUES.COMPANY].value:
-                    return companyRegister(form);
-                default:
-                    break;
-            }
+        async (form, address) => {
+            const formType = state[USER_FIELDS.FORM].toLowerCase();
+
+            address = { ...address, city: { id: address.city, state: { id: address.state } } };
+            delete address.state;
+
+            form = { ...form, role: 'ADMIN', [formType]: { ...form[formType], addresses: [address] } };
+            dispatch[state[USER_FIELDS.FORM]].register(form);
         },
         [personRegister, companyRegister]
     );
