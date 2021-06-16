@@ -9,12 +9,11 @@ import Router from './routes';
 
 //#endregion
 
-
 const App = () => (
     <SafeAreaProvider>
         <SystemContextProvider>
             <SplashLoader>
-                <Router/>
+                <Router />
             </SplashLoader>
         </SystemContextProvider>
     </SafeAreaProvider>

@@ -4,7 +4,7 @@ const PERSON_FIELDS = {
     NAME: 'name',
     CELL: 'cell',
     GENDER: 'gender',
-    BIRTH_DATE: 'birthDate'
+    BIRTH_DATE: 'birth'
 };
 
 export default PERSON_FIELDS;

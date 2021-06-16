@@ -5,6 +5,8 @@ import React, { Fragment } from 'react';
 import useAddressContext from 'storages/address/context';
 import ADDRESS_FIELDS from 'utils/constants/fields/address';
 import ADDRESS_LABELS from 'utils/constants/labels/address';
+import maxLength from 'utils/validations/masks/maxLength';
+import phone from 'utils/validations/masks/phone';
 import FieldCep from './CepField';
 import CityField from './CityField';
 import StateField from './StateField';
@@ -21,6 +23,14 @@ const FieldsAddress = () => {
                 name={ADDRESS_FIELDS.NAME}
                 label={ADDRESS_LABELS.NAME}
                 mask={(value) => maxLength(value, 70)}
+            />
+
+            <FieldInput
+                icon='phone'
+                isLoading={isLoading}
+                name={ADDRESS_FIELDS.PHONE}
+                label={ADDRESS_LABELS.PHONE}
+                mask={(value) => phone(value, 9)}
             />
 
             <FieldCep />
