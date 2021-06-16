@@ -1,32 +1,36 @@
 import React from 'react';
-import AnimalCard from './../animals-card/index';
+import AnimalCard from '../animals-card/index';
 import { View, Text, Image } from 'react-native';
 
-import ImagemGato from '../../images/gatoTeste.jpg'
-import ImagemCachorro from '../../images/cachorroTeste.jpeg'
+import ImagemGato from 'assets/images/gatoTeste.jpg'
+import ImagemCachorro from 'assets/images/cachorroTeste.jpeg'
+import ANIMAL_FIELDS from 'utils/constants/fields/animal';
 
 
 const AnimalList = () => {
+
+    const {animal} = useAnimalContext();
+
+    //{categoria: 'Cachorro', imagem: ImagemCachorro, nome: 'Gabriel Cachorrao', idade: 10, raca: 'Vira Lata'},
+    //{categoria: 'Gato', imagem: ImagemGato, nome: 'Garfield', idade: 9, raca: 'Siames'}
+
     return(
-         <div>
+         <View>
             {
-            Array.of({categoria: 'Cachorro', imagem: ImagemCachorro, nome: 'Gabriel Cachorrao', idade: 10, raca: 'Vira Lata'},
-                     {categoria: 'Gato', imagem: ImagemGato, nome: 'Garfield', idade: 9, raca: 'Siames'}
-                     )
-                    .map((animal, index) =>{
-                        return(
-                            <div key={index}>
-                                <AnimalCard title={animal.categoria}
-                                            imagemAnimal={animal.imagem}
-                                            nome={animal.nome}
-                                            idade={animal.idade}
-                                            raca={animal.raca}
-                                />
-                            </div>
+              animal&&animal.map((value, index) =>{
+                    return(
+                        <View key={index}>
+                            <AnimalCard title={value[ANIMAL_FIELDS.ANIMALTYPE]}
+                                        imagemAnimal={value[ANIMAL_FIELDS.IMG]}
+                                        nome={value[ANIMAL_FIELDS.NAME]}
+                                        idade={value[ANIMAL_FIELDS.AGE]}
+                                        raca={value[ANIMAL_FIELDS.BREED]}
+                            />
+                        </View>
                         )
                     })
             }
-        </div>
+        </View>
         );
 
 }

@@ -21,6 +21,10 @@ const ENDPOINT = {
     COMPANY: {
         THIS: 'company'
     },
+    ANIMAL: {
+        THIS: 'animal',
+        GET_ANIMAL: (name) => `animal?${buildQueryParams({name})}`
+    },
     ADDRESS: {
         CEP: (cep) => `https://viacep.com.br/ws/${cep}/json/`
     },
