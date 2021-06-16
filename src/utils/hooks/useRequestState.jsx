@@ -19,7 +19,7 @@ const initialOptions = {
 };
 
 const useRequestState = () => {
-    const { getError } = useRequestError();
+    // const { getError } = useRequestError();
     const [requestState, setRequestState] = useState(initalState);
 
     const clear = useCallback((timeout = 100) => setTimeout(() => setRequestState(initalState), timeout), []);
@@ -42,12 +42,12 @@ const useRequestState = () => {
                     errors: data.errors || initalState.errors
                 };
             } catch (error) {
-                const fltError = getError(error);
+                // const fltError = getError(error);
                 clearRequestState(options);
 
                 responseObj = {
                     ...initalState,
-                    errors: fltError
+                    errors: []
                 };
             }
 

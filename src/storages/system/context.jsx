@@ -13,6 +13,7 @@ const initialState = {
     [ROLE]: null,
     [NAME]: null,
     [TOKEN]: null,
+    screen: 'Authentication',
     [USER_TYPE]: null
 };
 
@@ -24,13 +25,15 @@ export const SystemContextProvider = ({ children, defaultValues }) => {
         [setState]
     );
 
-    return <SystemContext.Provider value={{ state, setLogin }}>{children}</SystemContext.Provider>;
+    const setScreen = useCallback((screen) => setState((prevState) => ({ ...prevState, screen })), [setState]);
+
+    return <SystemContext.Provider value={{ state, setLogin, setScreen }}>{children}</SystemContext.Provider>;
 };
 
 const useSystemContext = () => {
-    const { state, setLogin } = useContext(SystemContext);
+    const { state, setLogin, setScreen } = useContext(SystemContext);
 
-    return { setLogin, ...state };
+    return { setLogin, setScreen, ...state };
 };
 
 export default useSystemContext;

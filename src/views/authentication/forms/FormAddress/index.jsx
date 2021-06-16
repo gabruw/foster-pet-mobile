@@ -7,9 +7,11 @@ import Button from 'components/Button';
 import SubTitleDivider from 'components/SubTitleDivider';
 import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
+import { ROUTE_NAMES } from 'routes/routes';
 import useAddressContext from 'storages/address/context';
 import useAuthenticationContext from 'storages/authentication/context';
 import useFormContext, { FormContextProvider } from 'storages/form/context';
+import useSystemContext from 'storages/system/context';
 import useUserContext from 'storages/user/context';
 import ADDRESS_FIELDS from 'utils/constants/fields/address';
 import addressSchema from 'utils/validations/yup/schemas/address';
@@ -21,6 +23,7 @@ const { DARKEST } = COLOR.PURPLE.PRIMARY;
 
 const FormContent = () => {
     const styles = useStyles();
+    const { setScreen } = useSystemContext();
     const { setValue, handleSubmit } = useFormContext();
 
     const { authentication } = useAuthenticationContext();
@@ -36,7 +39,13 @@ const FormContent = () => {
         }
     }, [address]);
 
-    const onSubmit = useCallback((data) => register(authentication, data), [authentication, register]);
+    const onSubmit = useCallback(
+        (data) => {
+            register(authentication, data);
+            setScreen(ROUTE_NAMES.ANIMAL);
+        },
+        [authentication, navigate, register]
+    );
 
     return (
         <View style={styles.content}>
